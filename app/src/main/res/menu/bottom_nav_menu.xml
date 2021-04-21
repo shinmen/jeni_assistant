@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_rendez_vous"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_calendar" />
+
+    <item
+        android:id="@+id/navigation_boitage"
+        android:icon="@android:drawable/sym_action_email"
+        android:title="@string/title_boitage" />
+
+    <item
+        android:id="@+id/navigation_contact_telephone"
+        android:icon="@android:drawable/stat_sys_phone_call"
+        android:title="@string/title_contact_telephone" />
+
+</menu>

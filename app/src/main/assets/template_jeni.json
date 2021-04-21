@@ -1,0 +1,1148 @@
+{
+  "bien": [
+    {
+      "title": "logement",
+      "slug": "bienLogementType",
+      "type": "single",
+      "value": null,
+      "options": [
+        "Appartement",
+        "Appartement Duplex",
+        "Appartement Triplex",
+        "Bâtiment",
+        "Cave",
+        "Château",
+        "Ferme",
+        "Garage",
+        "Immeuble",
+        "Loft",
+        "Maison",
+        "Maison de village",
+        "Parking",
+        "Terrain",
+        "Villa"
+      ],
+      "validation": []
+    },
+    {
+      "title": "surface",
+      "slug": "bienSurface",
+      "type": "number",
+      "placeholder": 0,
+      "unit": "m²",
+      "value": "",
+      "validation": [
+        "number"
+      ]
+    },
+    {
+      "title": "état général",
+      "slug": "etat_general",
+      "type": "single",
+      "value": "",
+      "options": [
+        "Neuf",
+        "Très bon",
+        "Bon",
+        "Moyen",
+        "Mauvais"
+      ],
+      "validation": [
+        
+      ]
+    },
+    {
+      "title": "surface parcelle terrain",
+      "slug": "bienSurfaceTerrain",
+      "type": "number",
+      "placeholder": 0,
+      "unit": "m²",
+      "value": "",
+      "validation": [
+        "number"
+      ]
+    },
+    {
+      "title": "adresse",
+      "slug": "bienAdresse",
+      "type": "text",
+      "placeholder": null,
+      "value": "",
+      "validation": [
+        
+      ]
+    },
+    {
+      "title": "prochains travaux à prévoir",
+      "slug": "bienFutureTravaux",
+      "type": "text",
+      "placeholder": null,
+      "value": "",
+      "validation": [
+        
+      ]
+    },
+    {
+      "title": "année construction",
+      "slug": "bienAnneeConstruction",
+      "type": "integer",
+      "placeholder": null,
+      "value": "",
+      "validation": [
+        "integer"
+      ]
+    },
+    {
+      "title": "année des derniers travaux",
+      "slug": "bienAnneeTravaux",
+      "type": "integer",
+      "value": "",
+      "validation": [
+        "integer"
+      ]
+    },
+    {
+      "title": "en location",
+      "slug": "bienIsLoue",
+      "type": "boolean",
+      "value": "",
+      "options": [
+        "Oui",
+        "Non"
+      ],
+      "validation": [
+
+      ]
+    },
+    {
+      "title": "fin du bail locatif",
+      "slug": "bienFinBail",
+      "type": "text",
+      "placeholder": null,
+      "value": "",
+      "validation": [
+
+      ]
+    },
+    {
+      "title": "travaux copropriété à prévoir",
+      "slug": "bientravauxCopropriete",
+      "type": "text",
+      "placeholder": null,
+      "value": "",
+      "validation": []
+    },
+    {
+      "title": "cachet",
+      "slug": "bienCachet",
+      "type": "single",
+      "value": "",
+      "options": [
+        "Ancien",
+        "Architecte",
+        "Bourgeois(e)",
+        "Caractère",
+        "Contemporain",
+        "Écologique"
+      ],
+      "validation": [
+        
+      ]
+    },
+    {
+      "title": "environnement",
+      "slug": "bienEnvironnement",
+      "type": "multi",
+      "value": "",
+      "options": [
+        "Campagne",
+        "Chemin",
+        "Isolé",
+        "Ligne haute tension",
+        "Lotissement",
+        "Route",
+        "Route grande circulation",
+        "Ville",
+        "Vis-à-vis",
+        "Voie chemin de fer",
+        "Vue"
+      ],
+      "validation": [
+        
+      ]
+    },
+    {
+      "title": "taxe foncière",
+      "slug": "bienTaxeFonciere",
+      "type": "number",
+      "placeholder": null,
+      "unit": "€",
+      "value": "",
+      "validation": [
+        "number"
+      ]
+    },
+    {
+      "title": "mitoyenneté",
+      "slug": "bienMitoyennete",
+      "type": "single",
+      "value": "",
+      "option": [
+        "1 côté",
+        "2 côtés",
+        "3 côtés",
+        "Non"
+      ],
+      "validation": [
+        
+      ]
+    },
+    {
+      "title": "équipé de",
+      "slug": "bienEquipement",
+      "type": "multi",
+      "value": "",
+      "options": [
+        "ADSL",
+        "Alarme",
+        "Ascenseur",
+        "Caméra",
+        "Domotique",
+        "Fibre",
+        "Interphone",
+        "Visiophone"
+        
+      ],
+      "validation": [
+        
+      ]
+    },
+    {
+      "title": "chauffage collectif",
+      "slug": "bienChauffageCollectif",
+      "type": "boolean",
+      "value": "",
+      "option": [
+        "Oui",
+        "Non"
+      ],
+      "validation": [
+        
+      ]
+    },
+    {
+      "title": "chauffage à",
+      "slug": "bienChauffageEnergie",
+      "type": "multi",
+      "value": "",
+      "option": [
+        "Aérothermie",
+        "Bois",
+        "Bois en Granulés",
+        "Électricité",
+        "Fioul",
+        "Gaz de ville",
+        "Géothermie"
+      ],
+      "validation": [
+        
+      ]
+    },
+    {
+      "title": "chauffage diffusé par",
+      "slug": "bienChauffageDiffusion",
+      "type": "multi",
+      "value": "",
+      "option": [
+        "Au plafond",
+        "Au sol",
+        "Chaudière à granulés",
+        "Chaudière fioul",
+        "Chaudière gaz",
+        "Cheminée foyer fermé",
+        "Cheminée ouverte",
+        "Climatisation réversible",
+        "Panneau photovoltaïque",
+        "Panneau solaire",
+        "Poêle à granulés",
+        "Pompe à chaleur",
+        "Radiant",
+        "Radiateur",
+        "Radiateurs électriques à inertie",
+        "Sèche serviette",
+        "Soufflant"
+      ],
+      "validation": [
+        
+      ]
+    },
+    {
+      "title": "Vitrage",
+      "slug": "bienVitrage",
+      "type": "multi",
+      "value": "",
+      "option": [
+        "Simple",
+        "Double",
+        "Triple",
+        "Survitrage"
+      ],
+      "validation": [
+        
+      ]
+    },
+    {
+      "title": "eau chaude collectif",
+      "slug": "bienEauEnergie",
+      "type": "boolean",
+      "value": "",
+      "option": [
+        "Oui",
+        "Non"
+      ],
+      "validation": [
+        
+      ]
+    },
+    {
+      "title": "eauc chaude via",
+      "slug": "bienEauEnergie",
+      "type": "multi",
+      "value": "",
+      "option": [
+        "Aérothermie",
+        "Bois",
+        "Électrique",
+        "Éolien",
+        "Fuel",
+        "Gaz",
+        "Géothermie",
+        "Solaire",
+        "Thermodynamique"
+      ],
+      "validation": [
+        
+      ]
+    }
+  ],
+  "pieces": [
+    {
+      "buanderie": [
+        {
+          "title": "surface",
+          "slug": "buanderieSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        }
+      ],
+      "cave": [
+        {
+          "title": "surface",
+          "slug": "caveSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        }
+      ],
+      "cellier": [
+        {
+          "title": "surface",
+          "slug": "cellierSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        }
+      ],
+      "chambre": [
+        {
+          "title": "surface",
+          "slug": "chambreSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "orientation",
+          "slug": "chambreOrientation",
+          "type": "single",
+          "value": "",
+          "options": [
+            "Est",
+            "Nord",
+            "Ouest",
+            "Sud"
+          ],
+          "validation": [
+            
+          ]
+        },
+        {
+          "title": "niveau",
+          "slug": "chambreNiveau",
+          "type": "text",
+          "placeholder": null,
+          "value": "",
+          "validation": [
+            
+          ]
+        },
+        {
+          "title": "dressing",
+          "slug": "chambreHasDressing",
+          "type": "boolean",
+          "value": "",
+          "option": [
+            "Oui",
+            "Non"
+          ],
+          "validation": [
+            
+          ]
+        },
+        {
+          "title": "placards",
+          "slug": "chambreHasPlacard",
+          "type": "boolean",
+          "value": "",
+          "option": [
+            "Oui",
+            "Non"
+          ],
+          "validation": [
+            
+          ]
+        }
+      ],
+      "chambre parentale": [
+        {
+          "title": "surface",
+          "slug": "chambreParentaleSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "orientation",
+          "slug": "chambreParentaleOrientation",
+          "type": "single",
+          "value": "",
+          "options": [
+            "Est",
+            "Nord",
+            "Ouest",
+            "Sud"
+          ],
+          "validation": [
+            
+          ]
+        },
+        {
+          "title": "niveau",
+          "slug": "chambreParentaleNiveau",
+          "type": "text",
+          "placeholder": null,
+          "value": "",
+          "validation": [
+            
+          ]
+        },
+        {
+          "title": "dressing",
+          "slug": "chambreParentaleHasDressing",
+          "type": "boolean",
+          "value": "",
+          "option": [
+            "Oui",
+            "Non"
+          ],
+          "validation": [
+            
+          ]
+        },
+        {
+          "title": "placards",
+          "slug": "chambreParentaleHasPlacard",
+          "type": "boolean",
+          "value": "",
+          "option": [
+            "Oui",
+            "Non"
+          ],
+          "validation": [
+            
+          ]
+        }
+      ],
+      "cuisine": [
+        {
+          "title": "surface",
+          "slug": "cuisineSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "équipement",
+          "slug": "cuisineEquipement",
+          "type": "multi",
+          "value": "",
+          "options": [
+            "Bouteille de gaz",
+            "Four",
+            "Frigo",
+            "Hotte",
+            "Lave-vaisselle",
+            "Machine à laver",
+            "Micro-onde",
+            "Placard",
+            "Plaque électrique",
+            "Plaque gaz"
+          ],
+          "validation": [
+            
+          ]
+        },
+        {
+          "title": "type",
+          "slug": "cuisineType",
+          "type": "single",
+          "value": "",
+          "options": [
+            "Fermée",
+            "Kitchenette",
+            "Ouverte",
+            "Semi ouverte"
+          ],
+          "validation": [
+            
+          ]
+        },
+        {
+          "title": "année de construction",
+          "slug": "cuisineAnnee",
+          "type": "number",
+          "placeholder": null,
+          "unit": null,
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        }
+      ],
+      "couloir": [
+        {
+          "title": "surface",
+          "slug": "couloirSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "placards",
+          "slug": "couloirHasPlacard",
+          "type": "boolean",
+          "value": "",
+          "option": [
+            "Oui",
+            "Non"
+          ],
+          "validation": [
+            
+          ]
+        }
+      ],
+      "dépendance": [
+        {
+          "title": "surface",
+          "slug": "dependanceSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "aménageable",
+          "slug": "dependanceIsAmenageable",
+          "type": "boolean",
+          "value": "",
+          "option": [
+            "Oui",
+            "Non"
+          ],
+          "validation": [
+            
+          ]
+        }
+      ],
+      "extérieur": [
+        {
+          "title": "surface",
+          "slug": "exterieurSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "orientation",
+          "slug": "exterieurOrientation",
+          "type": "single",
+          "value": "",
+          "options": [
+            "Est",
+            "Nord",
+            "Ouest",
+            "Sud"
+          ],
+          "validation": [
+            
+          ]
+        }
+      ],
+      "garage": [
+        {
+          "title": "surface",
+          "slug": "garageSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "hauteur",
+          "slug": "garageHauteur",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "largeur",
+          "slug": "garageLargeur",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        }
+      ],
+      "grenier": [
+        {
+          "title": "surface",
+          "slug": "garageSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        }
+      ],
+      "mezzanine": [
+        {
+          "title": "surface",
+          "slug": "mezzanineSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "orientation",
+          "slug": "mezzanineOrientation",
+          "type": "single",
+          "value": "",
+          "options": [
+            "Est",
+            "Nord",
+            "Ouest",
+            "Sud"
+          ],
+          "validation": [
+            
+          ]
+        },
+        {
+          "title": "placards",
+          "slug": "mezzanineHasPlacard",
+          "type": "boolean",
+          "value": "",
+          "option": [
+            "Oui",
+            "Non"
+          ],
+          "validation": [
+            
+          ]
+        }
+      ],
+      "parking": [
+        {
+          "title": "type",
+          "slug": "parkgingType",
+          "type": "single",
+          "value": "",
+          "options": [
+            "Box individuel",
+            "Extérieur individuel",
+            "Extérieur collectif",
+            "Garage fermé collectif"
+          ],
+          "validation": []
+        }
+      ],
+      "piscine": [
+        {
+          "title": "longueur",
+          "slug": "piscineLongueur",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "largeur",
+          "slug": "piscineLargeur",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "type",
+          "slug": "piscineType",
+          "type": "single",
+          "value": "",
+          "options": [
+            "Entérrée",
+            "Hors-sol",
+            "Semi-Entérrée"
+          ],
+          "validation": [
+            
+          ]
+        },
+        {
+          "title": "système de sécurité",
+          "slug": "piscineSecurite",
+          "type": "single",
+          "value": "",
+          "options": [
+            "Alarme",
+            "Bâche",
+            "Barrière",
+            "Dôme",
+            "Volet"
+          ],
+          "validation": [
+            
+          ]
+        }
+      ],
+      "salle d'eau": [
+        {
+          "title": "surface",
+          "slug": "salleEauSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "année de construction",
+          "slug": "salleEauAnnee",
+          "type": "number",
+          "placeholder": null,
+          "unit": null,
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "équipé de",
+          "slug": "salleEauEquipement",
+          "type": "multi",
+          "value": "",
+          "options": [
+            "Bidet",
+            "Cabine douche",
+            "Douche italienne",
+            "Machine à laver",
+            "Sèche linge",
+            "Vasque double",
+            "Vasque simple",
+            "WC"
+          ],
+          "validation": [
+            
+          ]
+        }
+      ],
+      "salle de bains": [
+        {
+          "title": "surface",
+          "slug": "salleBainSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "année de construction",
+          "slug": "salleBainAnnee",
+          "type": "number",
+          "placeholder": null,
+          "unit": null,
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "équipé de",
+          "slug": "salleBainEquipement",
+          "type": "multi",
+          "value": "",
+          "options": [
+            "Baignoire à jet",
+            "Baignoire angle",
+            "Baignoire simple",
+            "Bidet",
+            "Cabine douche",
+            "Douche italienne",
+            "Machine à laver",
+            "Sèche linge",
+            "Vasque double",
+            "Vasque simple",
+            "WC"
+          ],
+          "validation": [
+            
+          ]
+        }
+      ],
+      "SDB chambre parentale": [
+        {
+          "title": "surface",
+          "slug": "salleBainParentaleSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "année de construction",
+          "slug": "salleBainParentaleAnnee",
+          "type": "number",
+          "placeholder": null,
+          "unit": null,
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "équipé de",
+          "slug": "salleBainParentaleEquipement",
+          "type": "multi",
+          "value": "",
+          "options": [
+            "Baignoire à jet",
+            "Baignoire angle",
+            "Baignoire simple",
+            "Bidet",
+            "Cabine douche",
+            "Douche italienne",
+            "Machine à laver",
+            "Sèche linge",
+            "Vasque double",
+            "Vasque simple",
+            "WC"
+          ],
+          "validation": [
+            
+          ]
+        }
+      ],
+      "salon": [
+        {
+          "title": "surface",
+          "slug": "salonSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "orientation",
+          "slug": "salonOrientation",
+          "type": "single",
+          "value": "",
+          "options": [
+            "Est",
+            "Nord",
+            "Ouest",
+            "Sud"
+          ],
+          "validation": [
+            
+          ]
+        },
+        {
+          "title": "niveau",
+          "slug": "salonNiveau",
+          "type": "text",
+          "placeholder": null,
+          "value": "",
+          "validation": [
+            
+          ]
+        },
+        {
+          "title": "ouvert sur",
+          "slug": "salonOuverture",
+          "type": "multi",
+          "value": "",
+          "options": [
+            "Balcon",
+            "Jardin",
+            "Plain pied",
+            "Sur cuisine",
+            "Sur séjour",
+            "Terrasse"
+          ],
+          "validation": [
+            
+          ]
+        }
+      ],
+      "séjour": [
+        {
+          "title": "surface",
+          "slug": "sejourSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "orientation",
+          "slug": "sejourOrientation",
+          "type": "single",
+          "value": "",
+          "options": [
+            "Est",
+            "Nord",
+            "Ouest",
+            "Sud"
+          ],
+          "validation": [
+            
+          ]
+        },
+        {
+          "title": "niveau",
+          "slug": "sejourNiveau",
+          "type": "text",
+          "placeholder": null,
+          "value": "",
+          "validation": [
+            
+          ]
+        },
+        {
+          "title": "ouvert sur",
+          "slug": "sejourOuverture",
+          "type": "multi",
+          "value": "",
+          "options": [
+            "Balcon",
+            "Jardin",
+            "Plain pied",
+            "Sur cuisine",
+            "Sur séjour",
+            "Terrasse"
+          ],
+          "validation": [
+            
+          ]
+        }
+      ],
+      "sous-sol": [
+        {
+          "title": "surface",
+          "slug": "sousolSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "hauteur",
+          "slug": "sousolHauteur",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        }
+      ],
+      "terrasse": [
+        {
+          "title": "surface",
+          "slug": "terrasseSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "orientation",
+          "slug": "terrasseOrientation",
+          "type": "single",
+          "value": "",
+          "options": [
+            "Est",
+            "Nord",
+            "Ouest",
+            "Sud"
+          ],
+          "validation": [
+            
+          ]
+        },
+        {
+          "title": "couverte",
+          "slug": "terrasseIsCouverte",
+          "type": "boolean",
+          "value": "",
+          "option": [
+            "Oui",
+            "Non"
+          ],
+          "validation": [
+            
+          ]
+        }
+      ],
+      "véranda": [
+        {
+          "title": "surface",
+          "slug": "verandaSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        },
+        {
+          "title": "orientation",
+          "slug": "verandaOrientation",
+          "type": "single",
+          "value": "",
+          "options": [
+            "Est",
+            "Nord",
+            "Ouest",
+            "Sud"
+          ],
+          "validation": [
+            
+          ]
+        }
+      ],
+      "wc": [
+        {
+          "title": "surface",
+          "slug": "wcSurface",
+          "type": "number",
+          "placeholder": 0,
+          "unit": "m²",
+          "value": "",
+          "validation": [
+            "number"
+          ]
+        }
+      ]
+    }
+  ]
+}

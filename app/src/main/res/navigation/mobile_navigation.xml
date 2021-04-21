@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_rendez_vous">
+
+    <fragment
+        android:id="@+id/navigation_rendez_vous"
+        android:name="fr.julocorp.jenisassistant.ui.calendar.list.CalendarFragment"
+        android:label="@string/title_calendar"
+        tools:layout="@layout/fragment_calendar" />
+
+    <fragment
+        android:id="@+id/navigation_boitage"
+        android:name="fr.julocorp.jenisassistant.ui.boitage.BoitageFragment"
+        android:label="@string/title_boitage"
+        tools:layout="@layout/fragment_boitage" />
+
+    <fragment
+        android:id="@+id/navigation_contact_telephone"
+        android:name="fr.julocorp.jenisassistant.ui.contactTelephone.ContactTelephoneFragment"
+        android:label="@string/title_contact_telephone"
+        tools:layout="@layout/fragment_contact_telephone" />
+</navigation>

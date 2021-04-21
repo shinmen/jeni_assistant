@@ -1,0 +1,14 @@
+{
+  "comment": "Sample data day of the year",
+  "data": [
+    {
+      "day": "03 avril 2021"
+    },
+    {
+      "day": "10 avril 2021"
+    },
+    {
+      "day": "13 mai 2021"
+    }
+  ]
+}

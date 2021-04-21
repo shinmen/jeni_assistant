@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/calendar_container"
+    tools:context=".ui.calendar.list.CalendarFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rendezvous_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listheader="@layout/viewholder_rdv_day"
+        tools:listitem="@layout/viewholder_rdv_task"
+        tools:listfooter="@layout/viewholder_separator" >
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_calendar_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="@dimen/just_bottom_navbar"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:contentDescription="@string/add_calendar_action"
+        android:src="@android:drawable/btn_plus" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

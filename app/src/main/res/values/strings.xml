@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Jeni\'s Assistant</string>
+    <string name="title_activity_home">Accueil</string>
+    <string name="title_calendar">Emploi du temps</string>
+    <string name="title_boitage">Boîtage</string>
+    <string name="title_contact_telephone">Appels</string>
+    <string name="add_calendar_action">Ajouter</string>
+    <string name="which_calendar_event">Quel type d\'évenement?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_estimation">Programmer une estimation</string>
+    <string name="add_visite">Programmer une visite</string>
+    <string name="add_reminder">Se mettre un reminder</string>
+    <string name="date_and_time">date et heure</string>
+    <string name="adresse">Adresse</string>
+    <string name="nom_du_contact">Nom du contact</string>
+    <string-array name="calendar_actions">
+        <item>Programmer une estimation</item>
+        <item>Programmer une visite</item>
+        <item>Se mettre un reminder</item>
+    </string-array>
+</resources>

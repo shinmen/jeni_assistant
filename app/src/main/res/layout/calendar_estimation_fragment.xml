@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.calendar.schedule.CalendarEstimationFragment">
+
+    <!--<EditText
+        android:id="@+id/datetime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="@string/date_and_time"
+        android:hint="@string/date_and_time"
+        android:inputType="none"
+        android:textAlignment="center"
+        app:drawableStartCompat="@android:drawable/ic_menu_month"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="12 avril à 14h40" />-->
+
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="@string/adresse"
+        android:hint="@string/adresse"
+        android:textAlignment="center"
+        android:inputType="textAutoComplete"
+        android:dropDownHeight="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="1 rue du parc 33200 Bordeaux" />
+
+    <EditText
+        android:id="@+id/proprietaire"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="@string/nom_du_contact"
+        android:hint="@string/nom_du_contact"
+        android:inputType="text"
+        android:textAlignment="center"
+        app:drawableStartCompat="@android:drawable/ic_menu_my_calendar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/address"
+        tools:text="Mr Jean Dupont" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
