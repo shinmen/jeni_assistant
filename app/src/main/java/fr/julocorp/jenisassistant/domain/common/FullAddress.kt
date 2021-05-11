@@ -8,7 +8,5 @@ data class FullAddress(
     val district: String?,
     val geolocation: Geolocation
 ) {
-    override fun toString(): String {
-        return streetname
-    }
+    override fun toString(): String = "$houseNumber $streetname $zipCode ${city.capitalize()}"
 }

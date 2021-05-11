@@ -14,6 +14,7 @@
     <string name="date_and_time">date et heure</string>
     <string name="adresse">Adresse</string>
     <string name="nom_du_contact">Nom du contact</string>
+    <string name="text_object">message</string>
     <string-array name="calendar_actions">
         <item>Programmer une estimation</item>
         <item>Programmer une visite</item>

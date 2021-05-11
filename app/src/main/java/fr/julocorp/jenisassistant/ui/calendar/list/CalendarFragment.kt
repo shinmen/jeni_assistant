@@ -15,6 +15,7 @@ import fr.julocorp.jenisassistant.ui.calendar.CalendarActionFragment
 import fr.julocorp.jenisassistant.ui.calendar.OnCalendarActionListener
 import fr.julocorp.jenisassistant.ui.calendar.list.adapter.*
 import fr.julocorp.jenisassistant.ui.calendar.schedule.CalendarEstimationFragment
+import fr.julocorp.jenisassistant.ui.calendar.schedule.ReminderFragment
 
 class CalendarFragment : Fragment(), OnCalendarActionListener {
 
@@ -55,10 +56,10 @@ class CalendarFragment : Fragment(), OnCalendarActionListener {
     }
 
     override fun selectCalendarAction(indexOfSelection: Int) {
-        val actions = listOf<() -> Fragment>(
+        val actions = listOf(
             { CalendarEstimationFragment.newInstance() },
             { CalendarEstimationFragment.newInstance() },
-            { CalendarEstimationFragment.newInstance() }
+            { ReminderFragment.newInstance() }
         )
         val action = actions.getOrNull(indexOfSelection)
         action?.run {

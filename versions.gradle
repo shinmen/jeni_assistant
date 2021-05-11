@@ -17,7 +17,8 @@ ext {
     espresso = "3.3.0"
     junit = "4.13.2"
     ext_junit = "1.1.2"
-    room_version = "2.2.6"
+    room_version = "2.3.0"
     retrofit_version = "2.9.0"
     dagger_version = "2.34"
+    hilt_version = "2.35"
 }
