@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import fr.julocorp.jenisassistant.R
-import fr.julocorp.jenisassistant.infrastructure.calendar.CalendarViewModel
+import fr.julocorp.jenisassistant.ui.calendar.CalendarViewModel
 import fr.julocorp.jenisassistant.ui.calendar.CalendarActionFragment
 import fr.julocorp.jenisassistant.ui.calendar.OnCalendarActionListener
 import fr.julocorp.jenisassistant.ui.calendar.list.adapter.*

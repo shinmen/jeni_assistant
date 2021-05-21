@@ -31,7 +31,7 @@
         android:layout_marginBottom="@dimen/just_bottom_navbar"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:contentDescription="@string/add_calendar_action"
-        android:src="@android:drawable/btn_plus" />
+        android:src="@drawable/ic_schedule" />
 
 
 

@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import fr.julocorp.jenisassistant.R
 import fr.julocorp.jenisassistant.ui.common.GeoLocationListAdapter
-import fr.julocorp.jenisassistant.infrastructure.calendar.CalendarEstimationViewModel
-import fr.julocorp.jenisassistant.infrastructure.common.DateTimePickerViewModel
+import fr.julocorp.jenisassistant.ui.calendar.CalendarEstimationViewModel
+import fr.julocorp.jenisassistant.ui.common.datetimePicker.DateTimePickerViewModel
 import fr.julocorp.jenisassistant.infrastructure.repository.ApiGeoGouvAdresseSearcher
 import fr.julocorp.jenisassistant.ui.common.datetimePicker.DatePickerDialogFragment
 import java.text.SimpleDateFormat

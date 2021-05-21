@@ -8,7 +8,6 @@ import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.AndroidSupportInjection
-import fr.julocorp.jenisassistant.infrastructure.common.DateTimePickerViewModel
 import fr.julocorp.jenisassistant.infrastructure.di.ViewModelFactory
 import java.util.*
 import javax.inject.Inject
@@ -24,7 +23,8 @@ class TimePickerDialogFragment : DialogFragment(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(DateTimePickerViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(
+            DateTimePickerViewModel::class.java)
     }
 
     override fun onAttach(context: Context) {

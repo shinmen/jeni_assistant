@@ -7,16 +7,24 @@
     android:layout_height="match_parent"
     tools:context=".ui.calendar.schedule.ReminderFragment">
 
+    <ImageView
+        android:id="@+id/calendar_meeting_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/side_icon_height"
+        android:src="@drawable/ic_meeting_deadlines"
+        android:contentDescription="@string/description_icon"
+        app:layout_constraintEnd_toStartOf="@+id/datetime_picker"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/datetime_picker"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:autofillHints=""
         android:layout_marginEnd="@dimen/text_margin"
         android:layout_marginStart="@dimen/text_margin"
         android:hint="@string/date_and_time"
+        app:layout_constraintStart_toEndOf="@+id/calendar_meeting_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -26,12 +34,21 @@
         android:minHeight="@dimen/textarea"
         android:gravity="start|bottom"
         android:inputType="textMultiLine"
+        android:importantForAutofill="no"
         android:hint="@string/text_object"
         android:layout_marginEnd="@dimen/text_margin"
         android:layout_marginStart="@dimen/text_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datetime_picker"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/datetime_picker" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:text="@string/save_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reminder_object" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

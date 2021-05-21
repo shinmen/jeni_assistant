@@ -14,7 +14,8 @@ import javax.inject.Singleton
         ViewModelModule::class,
         ActivityModule::class,
         AndroidSupportInjectionModule::class,
-        TestModule::class,
+        RemoteModule::class,
+        LocalDbModule::class,
     ]
 )
 interface AppComponent {

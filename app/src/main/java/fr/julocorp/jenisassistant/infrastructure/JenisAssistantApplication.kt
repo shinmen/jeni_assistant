@@ -16,8 +16,6 @@ class JenisAssistantApplication : Application(), HasAndroidInjector {
 
     override fun onCreate() {
         super.onCreate()
-//        DaggerAppComponent.create()
-//            .injectApplication(this)
 
         DaggerAppComponent.builder()
             .application(this)

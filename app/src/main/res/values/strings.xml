@@ -15,6 +15,8 @@
     <string name="adresse">Adresse</string>
     <string name="nom_du_contact">Nom du contact</string>
     <string name="text_object">message</string>
+    <string name="description_icon">icon</string>
+    <string name="save_label">Enregister</string>
     <string-array name="calendar_actions">
         <item>Programmer une estimation</item>
         <item>Programmer une visite</item>

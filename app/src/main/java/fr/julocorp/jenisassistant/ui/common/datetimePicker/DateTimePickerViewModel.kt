@@ -1,20 +1,18 @@
-package fr.julocorp.jenisassistant.infrastructure.common
+package fr.julocorp.jenisassistant.ui.common.datetimePicker
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import fr.julocorp.jenisassistant.ui.common.Dummy
 import java.util.*
 import javax.inject.Inject
 
-class DateTimePickerViewModel @Inject constructor(private val dummy: Dummy) : ViewModel() {
+class DateTimePickerViewModel @Inject constructor() : ViewModel() {
     private val mutableDatetimePicked = MutableLiveData(Calendar.getInstance())
 
     val dateTimePicked: LiveData<Calendar>
         get() = mutableDatetimePicked
 
     fun setDate(date: Calendar) {
-        dummy.test()
         val dateUpdated = mutableDatetimePicked.value?.apply {
             set(
                 date.get(Calendar.YEAR),
