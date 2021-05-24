@@ -5,6 +5,7 @@ import fr.julocorp.jenisassistant.domain.common.Rappel
 import fr.julocorp.jenisassistant.domain.common.repository.RappelRepository
 import fr.julocorp.jenisassistant.domain.common.useCase.ScheduleRappel
 import junit.framework.Assert.assertTrue
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito.mock
@@ -19,6 +20,8 @@ class ScheduleRappelUseCaseTest {
         val useCase = ScheduleRappel(repo)
         val rappel = Rappel(UUID.randomUUID(), Calendar.getInstance(), "sujet")
 
-        assertTrue(useCase.handle(rappel) is Success)
+        runBlocking {
+            assertTrue(useCase.handle(rappel) is Success)
+        }
     }
 }

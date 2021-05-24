@@ -4,7 +4,7 @@ import fr.julocorp.jenisassistant.domain.common.Rappel
 import java.util.*
 
 interface RappelRepository {
-    fun scheduleRappel(rappel: Rappel)
+    suspend fun scheduleRappel(rappel: Rappel)
 
-    fun endRappel(rappelId: UUID)
+    suspend fun endRappel(rappelId: UUID)
 }

@@ -6,8 +6,10 @@ import fr.julocorp.jenisassistant.domain.common.Rappel
 import fr.julocorp.jenisassistant.domain.common.repository.RappelRepository
 import javax.inject.Inject
 
-class ScheduleRappel @Inject constructor(private val rappelRepository: RappelRepository) {
-    fun handle(rappel: Rappel) : Result {
+class ScheduleRappel @Inject constructor(
+    private val rappelRepository: RappelRepository
+) {
+    suspend fun handle(rappel: Rappel): Result {
 
         rappelRepository.scheduleRappel(rappel)
 
