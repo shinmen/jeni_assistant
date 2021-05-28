@@ -3,34 +3,33 @@ package fr.julocorp.jenisassistant.ui.common.datetimePicker
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.LocalTime
 import java.util.*
 import javax.inject.Inject
 
 class DateTimePickerViewModel @Inject constructor() : ViewModel() {
-    private val mutableDatetimePicked = MutableLiveData(Calendar.getInstance())
+    private val mutableDatetimePicked = MutableLiveData(LocalDateTime.now())
 
-    val dateTimePicked: LiveData<Calendar>
+    val dateTimePicked: LiveData<LocalDateTime>
         get() = mutableDatetimePicked
 
-    fun setDate(date: Calendar) {
-        val dateUpdated = mutableDatetimePicked.value?.apply {
-            set(
-                date.get(Calendar.YEAR),
-                date.get(Calendar.MONTH),
-                date.get(Calendar.DAY_OF_MONTH)
-            )
+    fun setDate(date: LocalDate) {
+        val dateUpdated = mutableDatetimePicked.value?.let {
+            LocalDateTime.of(date, it.toLocalTime())
         }
         mutableDatetimePicked.postValue(dateUpdated)
     }
 
-    fun setTime(time: Calendar) {
-        mutableDatetimePicked.value?.set(Calendar.HOUR_OF_DAY, time.get(Calendar.HOUR_OF_DAY))
-        mutableDatetimePicked.value?.set(Calendar.MINUTE, time.get(Calendar.MINUTE))
-
-        mutableDatetimePicked.postValue(mutableDatetimePicked.value)
+    fun setTime(time: LocalTime) {
+        val timeUpdated = mutableDatetimePicked.value?.let {
+            LocalDateTime.of(it.toLocalDate(), time)
+        }
+        mutableDatetimePicked.postValue(timeUpdated)
     }
 
     fun reset() {
-        mutableDatetimePicked.postValue(Calendar.getInstance())
+        mutableDatetimePicked.postValue(LocalDateTime.now())
     }
 }

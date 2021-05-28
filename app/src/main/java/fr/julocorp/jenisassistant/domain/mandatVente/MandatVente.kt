@@ -2,6 +2,8 @@ package fr.julocorp.jenisassistant.domain.mandatVente
 
 import fr.julocorp.jenisassistant.domain.common.BusinessCalendar
 import fr.julocorp.jenisassistant.domain.common.Rappel
+import java.time.LocalDateTime
+import java.time.LocalTime
 import java.util.*
 
 class MandatVente(
@@ -9,7 +11,7 @@ class MandatVente(
     private val proprietaire: Proprietaire,
     private val bien: Bien
 ) {
-    fun requestEstimation(calendar: BusinessCalendar, disponibilites: Calendar?) {
+    fun requestEstimation(calendar: BusinessCalendar, disponibilites: LocalDateTime?) {
         if (disponibilites == null) {
             val scheduleCallTime = scheduleCallDisponibilites()
             calendar.addRappel(Rappel(UUID.randomUUID(), scheduleCallTime, bien.toString()))
@@ -18,7 +20,7 @@ class MandatVente(
         }
     }
 
-    fun scheduleRendezVousEstimation(disponibilites: Calendar) = RendezVousEstimation(
+    fun scheduleRendezVousEstimation(disponibilites: LocalDateTime) = RendezVousEstimation(
         disponibilites,
         bien.adresse,
         proprietaire.telephones.first(),
@@ -41,15 +43,13 @@ class MandatVente(
 
     }
 
-    private fun scheduleCallDisponibilites(): Calendar
+    private fun scheduleCallDisponibilites(): LocalDateTime
     {
-        val tonightAtSeven = Calendar.getInstance().apply { set(Calendar.HOUR_OF_DAY, 19) }
+        val now = LocalDateTime.now()
+        val tonightAtSeven = LocalDateTime.now().withHour(19).withMinute(0)
 
-        return if (Calendar.getInstance().after(tonightAtSeven)) {
-            Calendar.getInstance().apply {
-                add(Calendar.DATE, 1)
-                set(Calendar.HOUR_OF_DAY, 9)
-            }
+        return if (now.isAfter(tonightAtSeven)) {
+            now.withHour(9).withMinute(0)
         } else {
             tonightAtSeven
         }

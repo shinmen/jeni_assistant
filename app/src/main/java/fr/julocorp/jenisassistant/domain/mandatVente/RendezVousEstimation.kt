@@ -1,9 +1,9 @@
 package fr.julocorp.jenisassistant.domain.mandatVente
 
-import java.util.*
+import java.time.LocalDateTime
 
 data class RendezVousEstimation(
-    val rendezVousDate: Calendar,
+    val rendezVousDate: LocalDateTime,
     val addresseBien: AdresseBien,
     val telephone: String,
     val mandat: MandatVente

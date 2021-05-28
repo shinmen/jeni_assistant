@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.AndroidSupportInjection
 import fr.julocorp.jenisassistant.infrastructure.di.ViewModelFactory
+import java.time.LocalTime
 import java.util.*
 import javax.inject.Inject
 
@@ -35,28 +36,18 @@ class TimePickerDialogFragment : DialogFragment(),
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog = TimePickerDialog(
         requireActivity(),
         this,
-        Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
-        Calendar.getInstance().get(Calendar.MINUTE),
+        LocalTime.now().hour,
+        LocalTime.now().minute,
         true
     )
 
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-        val time = Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, hourOfDay)
-            set(Calendar.MINUTE, minute)
-        }
-
-        viewModel.setTime(time)
+        viewModel.setTime(LocalTime.of(hourOfDay, minute))
         dismiss()
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() =
-            TimePickerDialogFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
+        fun newInstance() = TimePickerDialogFragment()
     }
 }

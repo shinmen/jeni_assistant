@@ -7,9 +7,9 @@ import fr.julocorp.jenisassistant.R
 import fr.julocorp.jenisassistant.infrastructure.inflate
 import fr.julocorp.jenisassistant.ui.calendar.list.CalendarRow
 
-class EstimationAdapter : RendezVousListAdapter.RendezAdapter {
+class TaskVousAdapter : RendezVousListAdapter.RendezVousAdapter {
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder = DayViewHolder(
-        parent.inflate(R.layout.viewholder_rdv_estimation)
+        parent.inflate(R.layout.viewholder_rdv_task)
     )
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, calendarRow: CalendarRow) {

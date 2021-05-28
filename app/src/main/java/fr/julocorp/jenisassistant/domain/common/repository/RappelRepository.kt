@@ -7,4 +7,6 @@ interface RappelRepository {
     suspend fun scheduleRappel(rappel: Rappel)
 
     suspend fun endRappel(rappelId: UUID)
+
+    suspend fun findRappels(): List<Rappel>
 }

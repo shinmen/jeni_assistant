@@ -10,7 +10,7 @@ data class RappelEntity(
     @PrimaryKey val uid: String,
     @ColumnInfo(name = "rappel_date") val rappelDate: Long,
     @ColumnInfo(name = "sujet") val sujet: String,
-    @ColumnInfo(name = "closedAt") val closedAt: Long? = null,
+    @ColumnInfo(name = "closed_at") val closedAt: Long? = null,
 )  {
    companion object {
        const val RAPPEL_TABLE = "rappels"

@@ -11,11 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import fr.julocorp.jenisassistant.R
 import fr.julocorp.jenisassistant.ui.common.GeoLocationListAdapter
-import fr.julocorp.jenisassistant.ui.calendar.CalendarEstimationViewModel
 import fr.julocorp.jenisassistant.ui.common.datetimePicker.DateTimePickerViewModel
 import fr.julocorp.jenisassistant.infrastructure.repository.ApiGeoGouvAdresseSearcher
 import fr.julocorp.jenisassistant.ui.common.datetimePicker.DatePickerDialogFragment
 import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
 
 class CalendarEstimationFragment : Fragment() {
 
@@ -54,9 +54,7 @@ class CalendarEstimationFragment : Fragment() {
                 DatePickerDialogFragment.newInstance().show(parentFragmentManager, TAG)
             }
             dateTimePickerViewModel.dateTimePicked.observe(viewLifecycleOwner) {
-                SimpleDateFormat("EE d MMM y à H:mm").apply {
-                    text = format(it.time)
-                }
+                text = it.format(DateTimeFormatter.ofPattern("EE d MMM y à H:mm"))
             }
         }
     }

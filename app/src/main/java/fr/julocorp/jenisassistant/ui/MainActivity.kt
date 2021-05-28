@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AndroidInjection.inject(this)
         setContentView(R.layout.activity_home)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
@@ -39,7 +40,6 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        AndroidInjection.inject(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

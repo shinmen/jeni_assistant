@@ -5,14 +5,14 @@ import java.util.*
 
 sealed class CalendarRow: TypeIdentifier
 
-data class DayRow(val day: String): CalendarRow() {
+data class DayRow(val day: Calendar): CalendarRow() {
     companion object {
         const val VIEW_TYPE = 1
     }
     override fun getViewType() = VIEW_TYPE
 }
 
-data class TaskRow(val reminder: String, val date: Calendar): CalendarRow() {
+data class TaskRow(val id: UUID, val reminder: String, val date: Calendar): CalendarRow() {
     companion object {
         const val VIEW_TYPE = 2
     }

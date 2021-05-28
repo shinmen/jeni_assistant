@@ -16,8 +16,11 @@ import fr.julocorp.jenisassistant.R
 import fr.julocorp.jenisassistant.domain.common.Rappel
 import fr.julocorp.jenisassistant.ui.common.datetimePicker.DateTimePickerViewModel
 import fr.julocorp.jenisassistant.infrastructure.di.ViewModelFactory
+import fr.julocorp.jenisassistant.ui.calendar.list.CalendarFragment
 import fr.julocorp.jenisassistant.ui.common.datetimePicker.DatePickerDialogFragment
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.inject.Inject
 
@@ -53,16 +56,17 @@ class ReminderFragment : Fragment() {
                     DatePickerDialogFragment.newInstance().show(parentFragmentManager, TAG)
                 }
                 dateTimePickerViewModel.dateTimePicked.observe(viewLifecycleOwner) {
-
-                    SimpleDateFormat("EE d MMM y à H:mm").apply {
-                        text = format(it.time)
-                    }
+                    text = it.format(DateTimeFormatter.ofPattern("EE d MMM y à H:mm"))
                 }
             }
             findViewById<Button>(R.id.save_button).setOnClickListener {
                 reminderViewModel.schedule(
-                    Rappel(UUID.randomUUID(), java.util.Calendar.getInstance(), reminderObject.text.toString())
+                    Rappel(UUID.randomUUID(), LocalDateTime.now(), reminderObject.text.toString())
                 )
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.calendar_container, CalendarFragment.newInstance(), CalendarFragment.TAG)
+                    .commit()
             }
         }
     }

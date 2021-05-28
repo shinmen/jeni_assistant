@@ -9,7 +9,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.AndroidSupportInjection
 import fr.julocorp.jenisassistant.infrastructure.di.ViewModelFactory
-import java.util.*
+import java.time.LocalDate
+import java.time.LocalDateTime
 import javax.inject.Inject
 
 
@@ -32,16 +33,19 @@ class DatePickerDialogFragment : DialogFragment(),
         AndroidSupportInjection.inject(this)
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog = DatePickerDialog(
-        requireActivity(),
-        this,
-        Calendar.getInstance().get(Calendar.YEAR),
-        Calendar.getInstance().get(Calendar.MONTH),
-        Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-    )
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val now = LocalDateTime.now()
+        return DatePickerDialog(
+            requireActivity(),
+            this,
+            now.year,
+            now.monthValue,
+            now.dayOfMonth
+        )
+    }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        viewModel.setDate(Calendar.getInstance().apply { set(year, month, dayOfMonth) })
+        viewModel.setDate(LocalDate.of(year, month, dayOfMonth))
 
         TimePickerDialogFragment.newInstance().show(parentFragmentManager, TAG)
     }

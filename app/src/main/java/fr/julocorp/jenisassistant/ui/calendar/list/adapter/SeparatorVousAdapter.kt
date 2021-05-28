@@ -7,7 +7,7 @@ import fr.julocorp.jenisassistant.R
 import fr.julocorp.jenisassistant.infrastructure.inflate
 import fr.julocorp.jenisassistant.ui.calendar.list.CalendarRow
 
-class SeparatorAdapter : RendezVousListAdapter.RendezAdapter {
+class SeparatorVousAdapter : RendezVousListAdapter.RendezVousAdapter {
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder = DayViewHolder(
         parent.inflate(R.layout.viewholder_separator)
     )

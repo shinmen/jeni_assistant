@@ -10,6 +10,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito.mock
 import org.mockito.junit.MockitoJUnitRunner
+import java.time.LocalDateTime
 import java.util.*
 
 @RunWith(MockitoJUnitRunner::class)
@@ -18,7 +19,7 @@ class ScheduleRappelUseCaseTest {
     fun `schedule rappel should be successfull`() {
         val repo = mock(RappelRepository::class.java)
         val useCase = ScheduleRappel(repo)
-        val rappel = Rappel(UUID.randomUUID(), Calendar.getInstance(), "sujet")
+        val rappel = Rappel(UUID.randomUUID(), LocalDateTime.now(), "sujet")
 
         runBlocking {
             assertTrue(useCase.handle(rappel) is Success)

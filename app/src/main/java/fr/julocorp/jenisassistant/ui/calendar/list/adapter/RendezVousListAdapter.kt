@@ -6,16 +6,16 @@ import fr.julocorp.jenisassistant.infrastructure.ViewType
 import fr.julocorp.jenisassistant.ui.calendar.list.CalendarRow
 import fr.julocorp.jenisassistant.ui.calendar.list.SeparatorRow
 
-class RendezVousListAdapter(private val adapters: Map<ViewType, RendezAdapter>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class RendezVousListAdapter(private val adapters: Map<ViewType, RendezVousAdapter>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
-        adapters.getOrDefault(viewType, SeparatorAdapter()).onCreateViewHolder(parent)
+        adapters.getOrDefault(viewType, SeparatorVousAdapter()).onCreateViewHolder(parent)
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
-        adapters.getOrDefault(getItemViewType(position), SeparatorAdapter()).onBindViewHolder(holder, SeparatorRow)
+        adapters.getOrDefault(getItemViewType(position), SeparatorVousAdapter()).onBindViewHolder(holder, SeparatorRow)
 
     override fun getItemCount(): Int = 0
 
-    interface RendezAdapter {
+    interface RendezVousAdapter {
         fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder
         fun onBindViewHolder(holder: RecyclerView.ViewHolder, calendarRow: CalendarRow)
     }

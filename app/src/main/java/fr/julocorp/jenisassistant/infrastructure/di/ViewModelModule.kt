@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import fr.julocorp.jenisassistant.ui.calendar.list.CalendarViewModel
 import fr.julocorp.jenisassistant.ui.calendar.schedule.ReminderViewModel
 import fr.julocorp.jenisassistant.ui.common.datetimePicker.DateTimePickerViewModel
 import javax.inject.Singleton
@@ -25,4 +26,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ReminderViewModel::class)
     abstract fun reminderViewModel(viewModel: ReminderViewModel): ViewModel
+
+    @Singleton
+    @Binds
+    @IntoMap
+    @ViewModelKey(CalendarViewModel::class)
+    abstract fun calendarViewModel(viewModel: CalendarViewModel): ViewModel
 }

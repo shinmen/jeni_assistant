@@ -1,4 +1,4 @@
-package fr.julocorp.jenisassistant.ui.calendar
+package fr.julocorp.jenisassistant.ui.calendar.schedule
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
