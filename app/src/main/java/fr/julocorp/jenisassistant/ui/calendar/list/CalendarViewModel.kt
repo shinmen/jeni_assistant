@@ -5,14 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import fr.julocorp.jenisassistant.domain.common.repository.RappelRepository
+import fr.julocorp.jenisassistant.infrastructure.common.CoroutineContextProvider
 import kotlinx.coroutines.async
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
+import kotlinx.coroutines.launch
+import java.time.LocalDate
 import java.util.*
 import javax.inject.Inject
 
 class CalendarViewModel @Inject constructor(
-    private val rappelRepository: RappelRepository
+    private val rappelRepository: RappelRepository,
+    private val coroutineContextProvider: CoroutineContextProvider
 ) : ViewModel() {
 
     private val mutableCalendarRows = MutableLiveData(listOf<CalendarRow>())
@@ -21,15 +23,38 @@ class CalendarViewModel @Inject constructor(
         get() = mutableCalendarRows
 
     fun fetchCalendarRow() {
-        val rappels = viewModelScope.async {
-            rappelRepository.findRappels()
-        }
-        val dateFormatter = SimpleDateFormat("EE d MMM")
-        val calendarRows = mutableListOf<CalendarRow>()
-        val byDays = listOf<CalendarRow>()
-        Calendar.getInstance().time.toInstant()
-        calendarRows.add(DayRow(Calendar.getInstance()))
-        LocalDateTime.now()
+        viewModelScope.launch(coroutineContextProvider.IO) {
+            val calendarRowsGroupedByDate = TreeMap<LocalDate, MutableList<CalendarRow>>()
+            val deferredRappels = async { rappelRepository.findRappels() }
 
+            calendarRowsGroupedByDate.putIfAbsent(
+                LocalDate.now(),
+                mutableListOf()
+            )
+
+            deferredRappels.await().also { rappels ->
+                rappels
+                    .map { rappel ->
+                        val row = RappelRow(rappel.id, rappel.sujet, rappel.rappelDate)
+                        calendarRowsGroupedByDate.putIfAbsent(
+                            rappel.rappelDate.toLocalDate(),
+                            mutableListOf()
+                        )
+                        calendarRowsGroupedByDate[rappel.rappelDate.toLocalDate()]?.add(row)
+                    }
+            }
+
+
+            mutableCalendarRows.postValue(
+                calendarRowsGroupedByDate
+                    .map { rowsGroupByDate ->
+                        val isToday = LocalDate.now().equals(rowsGroupByDate.key)
+                        rowsGroupByDate.value.add(0, DayRow(rowsGroupByDate.key, isToday))
+                        rowsGroupByDate.value.add(SeparatorRow)
+                        rowsGroupByDate
+                    }
+                    .flatMap { rowsGroupByDate -> rowsGroupByDate.value.toList() }
+            )
+        }
     }
 }

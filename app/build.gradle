@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion target_sdk_version
 
     defaultConfig {
         applicationId application_id
@@ -74,4 +74,6 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+
+    implementation "com.airbnb.android:lottie:$lottie_version"
 }

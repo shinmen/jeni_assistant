@@ -35,6 +35,7 @@ class DatePickerDialogFragment : DialogFragment(),
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val now = LocalDateTime.now()
+
         return DatePickerDialog(
             requireActivity(),
             this,
@@ -45,20 +46,16 @@ class DatePickerDialogFragment : DialogFragment(),
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        viewModel.setDate(LocalDate.of(year, month, dayOfMonth))
+        viewModel.setDate(LocalDate.of(year, month + MONTH_INDEX_FIXER, dayOfMonth))
 
         TimePickerDialogFragment.newInstance().show(parentFragmentManager, TAG)
     }
 
     companion object {
+        private const val MONTH_INDEX_FIXER = 1
         private const val TAG = "datePickerDialog"
 
         @JvmStatic
-        fun newInstance() =
-            DatePickerDialogFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
+        fun newInstance() = DatePickerDialogFragment()
     }
 }

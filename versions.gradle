@@ -21,4 +21,5 @@ ext {
     retrofit_version = "2.9.0"
     dagger_version = "2.35.1"
     mockito_version = "2.28.2"
+    lottie_version = "3.7.0"
 }

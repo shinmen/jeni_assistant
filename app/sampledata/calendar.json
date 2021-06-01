@@ -4,7 +4,7 @@
     {
       "tasks" : [
         {
-          "reminder": "Rappeler Mme Lois Lane"
+          "reminder": "Rappeler Mme Lois Lane pas plus tard que 20h car elle met 1h à rentrer chez elle"
         },
         {
           "reminder": "Rappeler Mr Barry Allen"

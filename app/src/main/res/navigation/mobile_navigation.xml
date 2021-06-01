@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_contact_telephone"
-        android:name="fr.julocorp.jenisassistant.ui.contactTelephone.ContactTelephoneFragment"
+        android:name="fr.julocorp.jenisassistant.ui.contact.ContactFragment"
         android:label="@string/title_contact_telephone"
-        tools:layout="@layout/fragment_contact_telephone" />
+        tools:layout="@layout/fragment_contact" />
 </navigation>

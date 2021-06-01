@@ -1,4 +1,4 @@
-package fr.julocorp.jenisassistant.ui.contactTelephone
+package fr.julocorp.jenisassistant.ui.contact
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import fr.julocorp.jenisassistant.R
 
-class ContactTelephoneFragment : Fragment() {
+class ContactFragment : Fragment() {
 
-    private lateinit var contactTelephoneViewModel: ContactTelephoneViewModel
+    private lateinit var contactViewModel: ContactViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        contactTelephoneViewModel =
-            ViewModelProvider(this).get(ContactTelephoneViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_contact_telephone, container, false)
+        contactViewModel =
+            ViewModelProvider(this).get(ContactViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_contact, container, false)
         val textView: TextView = root.findViewById(R.id.text_notifications)
-        contactTelephoneViewModel.text.observe(viewLifecycleOwner, Observer {
+        contactViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

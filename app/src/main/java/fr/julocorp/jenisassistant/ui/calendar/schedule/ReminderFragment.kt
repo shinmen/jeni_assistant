@@ -1,24 +1,27 @@
 package fr.julocorp.jenisassistant.ui.calendar.schedule
 
 import android.content.Context
-import android.icu.util.Calendar
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import fr.julocorp.jenisassistant.R
+import fr.julocorp.jenisassistant.domain.*
 import fr.julocorp.jenisassistant.domain.common.Rappel
-import fr.julocorp.jenisassistant.ui.common.datetimePicker.DateTimePickerViewModel
 import fr.julocorp.jenisassistant.infrastructure.di.ViewModelFactory
+import fr.julocorp.jenisassistant.infrastructure.error
+import fr.julocorp.jenisassistant.infrastructure.success
 import fr.julocorp.jenisassistant.ui.calendar.list.CalendarFragment
 import fr.julocorp.jenisassistant.ui.common.datetimePicker.DatePickerDialogFragment
-import java.text.SimpleDateFormat
+import fr.julocorp.jenisassistant.ui.common.datetimePicker.DateTimePickerViewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -28,7 +31,7 @@ class ReminderFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var dateTimePickerViewModel: DateTimePickerViewModel
-    private lateinit var reminderViewModel: ReminderViewModel
+    private lateinit var rappelViewModel: RappelViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,28 +48,66 @@ class ReminderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dateTimePickerViewModel = ViewModelProvider(this, viewModelFactory).get(
-            DateTimePickerViewModel::class.java)
-        reminderViewModel = ViewModelProvider(this, viewModelFactory).get(ReminderViewModel::class.java)
+            DateTimePickerViewModel::class.java
+        )
+        rappelViewModel =
+            ViewModelProvider(this, viewModelFactory).get(RappelViewModel::class.java)
 
         with(view) {
-            val reminderObject = findViewById<EditText>(R.id.reminder_object)
+            val reminderObjectView = findViewById<EditText>(R.id.reminder_object)
+            val dateTimeView = findViewById<TextView>(R.id.datetime_picker)
+            val loaderView = findViewById<ProgressBar>(R.id.loader)
 
-            findViewById<TextView>(R.id.datetime_picker).run {
+            dateTimeView.run {
                 setOnClickListener {
                     DatePickerDialogFragment.newInstance().show(parentFragmentManager, TAG)
                 }
                 dateTimePickerViewModel.dateTimePicked.observe(viewLifecycleOwner) {
-                    text = it.format(DateTimeFormatter.ofPattern("EE d MMM y à H:mm"))
+                    text = it.format(DateTimeFormatter.ofPattern(context.getString(R.string.datetime_pattern_full)))
                 }
             }
             findViewById<Button>(R.id.save_button).setOnClickListener {
-                reminderViewModel.schedule(
-                    Rappel(UUID.randomUUID(), LocalDateTime.now(), reminderObject.text.toString())
+                val rappelDatetime = LocalDateTime.parse(
+                    dateTimeView.text,
+                    DateTimeFormatter.ofPattern(context.getString(R.string.datetime_pattern_full))
                 )
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.calendar_container, CalendarFragment.newInstance(), CalendarFragment.TAG)
-                    .commit()
+                rappelViewModel.schedule(
+                    Rappel(UUID.randomUUID(), rappelDatetime, reminderObjectView.text.toString())
+                )
+            }
+
+            rappelViewModel.scheduleRappelResult.observe(viewLifecycleOwner) { state ->
+                when (state) {
+                    is Loading -> loaderView.visibility = View.VISIBLE
+                    is Success -> {
+                        loaderView.visibility = View.GONE
+                        Snackbar.make(
+                            this.rootView.findViewById(R.id.content),
+                            context.getString(R.string.rappel_save),
+                            Snackbar.LENGTH_SHORT
+                        )
+                            .success(requireContext())
+                            .show()
+                        parentFragmentManager
+                            .beginTransaction()
+                            .replace(
+                                R.id.content,
+                                CalendarFragment.newInstance(),
+                                CalendarFragment.TAG
+                            )
+                            .commit()
+                    }
+                    is Failure -> {
+                        loaderView.visibility = View.GONE
+                        Snackbar.make(
+                            this.rootView.findViewById(R.id.content),
+                            state.error.message.toString(),
+                            Snackbar.LENGTH_SHORT
+                        )
+                            .error(requireContext())
+                            .show()
+                    }
+                }
             }
         }
     }

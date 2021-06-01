@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listheader="@layout/viewholder_rdv_day"
-        tools:listitem="@layout/viewholder_rdv_task"
+        tools:listitem="@layout/viewholder_rdv_rappel"
         tools:listfooter="@layout/viewholder_separator" >
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -28,11 +28,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_gravity="end|bottom"
-        android:layout_marginBottom="@dimen/just_bottom_navbar"
+        android:layout_marginBottom="@dimen/just_above_navbar"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:contentDescription="@string/add_calendar_action"
         android:src="@drawable/ic_schedule" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

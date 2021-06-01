@@ -3,24 +3,23 @@ package fr.julocorp.jenisassistant.ui
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import fr.julocorp.jenisassistant.R
+import fr.julocorp.jenisassistant.ui.boitage.BoitageFragment
+import fr.julocorp.jenisassistant.ui.calendar.list.CalendarFragment
+import fr.julocorp.jenisassistant.ui.contact.ContactFragment
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), HasAndroidInjector {
 
     @Inject
-    lateinit var androidInjector : DispatchingAndroidInjector<Any>
-
+    lateinit var androidInjector: DispatchingAndroidInjector<Any>
     override fun androidInjector(): AndroidInjector<Any> = androidInjector
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,31 +28,22 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
         setContentView(R.layout.activity_home)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
-        val navController = findNavController(R.id.nav_host_fragment)
+        setCurrentFragment(CalendarFragment.newInstance())
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_rendez_vous, R.id.navigation_boitage, R.id.navigation_contact_telephone
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.action_nav_menu, menu)
-
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.navigation_add_estimation -> {}
-            R.id.navigation_add_visite -> {}
-            R.id.navigation_add_reminder -> {}
+        navView.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.navigation_rendez_vous -> setCurrentFragment(CalendarFragment.newInstance())
+                R.id.navigation_boitage -> setCurrentFragment(BoitageFragment())
+                R.id.navigation_contact_telephone -> setCurrentFragment(ContactFragment())
+            }
+            true
         }
-        return super.onOptionsItemSelected(item)
+    }
+
+    private fun setCurrentFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.content, fragment, fragment.tag)
+            .addToBackStack(null)
+            .commit()
     }
 }

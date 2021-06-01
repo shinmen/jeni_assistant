@@ -2,12 +2,12 @@ package fr.julocorp.jenisassistant.ui.calendar.list
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -39,6 +39,7 @@ class CalendarFragment : Fragment(), OnCalendarActionListener {
         val root = inflater.inflate(R.layout.fragment_calendar, container, false)
         calendarViewModel =
             ViewModelProvider(this, viewModelFactory).get(CalendarViewModel::class.java)
+        calendarViewModel.fetchCalendarRow()
 
         val action = root.findViewById<FloatingActionButton>(R.id.add_calendar_action)
         action.setOnClickListener {
@@ -50,18 +51,20 @@ class CalendarFragment : Fragment(), OnCalendarActionListener {
         with(rendezVousRecyclerView) {
             layoutManager = LinearLayoutManager(activity)
             val adapters = mapOf(
-                DayRow.VIEW_TYPE to DayVousAdapter(),
-                TaskRow.VIEW_TYPE to TaskVousAdapter(),
+                DayRow.VIEW_TYPE to DayAdapter(),
+                RappelRow.VIEW_TYPE to RappelAdapter(),
                 VisiteRow.VIEW_TYPE to VisiteVousAdapter(),
                 EstimationRow.VIEW_TYPE to EstimationVousAdapter(),
                 SeparatorRow.VIEW_TYPE to SeparatorVousAdapter()
             )
-            adapter = RendezVousListAdapter(adapters)
-            calendarViewModel.calendarRows.observe(viewLifecycleOwner) {
-                Log.d("youhou", it.toString())
+            val rendezVousListAdapter = RendezVousListAdapter(adapters)
+            adapter = rendezVousListAdapter
+            calendarViewModel.calendarRows.observe(viewLifecycleOwner) { rows ->
+                rendezVousListAdapter.updateRows(rows)
+                val todayPosition = rows.indexOfFirst { it is DayRow && it.isToday }
+                (layoutManager as LinearLayoutManager).scrollToPosition(todayPosition)
             }
         }
-
 
         return root
     }
@@ -75,8 +78,8 @@ class CalendarFragment : Fragment(), OnCalendarActionListener {
         val action = actions.getOrNull(indexOfSelection)
         action?.run {
             parentFragmentManager.beginTransaction()
-                .replace(R.id.calendar_container, this.invoke(), SCHEDULER_TAG)
-                .addToBackStack(SCHEDULER_TAG)
+                .replace(R.id.content, this.invoke(), SCHEDULER_TAG)
+                .addToBackStack(null)
                 .commit()
         }
     }
