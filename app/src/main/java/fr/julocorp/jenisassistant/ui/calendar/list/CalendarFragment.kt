@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -19,6 +18,7 @@ import fr.julocorp.jenisassistant.ui.calendar.OnCalendarActionListener
 import fr.julocorp.jenisassistant.ui.calendar.list.adapter.*
 import fr.julocorp.jenisassistant.ui.calendar.schedule.CalendarEstimationFragment
 import fr.julocorp.jenisassistant.ui.calendar.schedule.ReminderFragment
+import java.util.*
 import javax.inject.Inject
 
 class CalendarFragment : Fragment(), OnCalendarActionListener {
@@ -49,10 +49,18 @@ class CalendarFragment : Fragment(), OnCalendarActionListener {
 
         val rendezVousRecyclerView = root.findViewById<RecyclerView>(R.id.rendezvous_list)
         with(rendezVousRecyclerView) {
+            val listener =  {
+                    adapter: RendezVousListAdapter,
+                    position: Int,
+                    id: UUID ->
+                adapter.remove(position)
+                calendarViewModel.markRappelAsDone(id)
+            }
+
             layoutManager = LinearLayoutManager(activity)
             val adapters = mapOf(
                 DayRow.VIEW_TYPE to DayAdapter(),
-                RappelRow.VIEW_TYPE to RappelAdapter(),
+                RappelRow.VIEW_TYPE to RappelAdapter(listener),
                 VisiteRow.VIEW_TYPE to VisiteVousAdapter(),
                 EstimationRow.VIEW_TYPE to EstimationVousAdapter(),
                 SeparatorRow.VIEW_TYPE to SeparatorVousAdapter()

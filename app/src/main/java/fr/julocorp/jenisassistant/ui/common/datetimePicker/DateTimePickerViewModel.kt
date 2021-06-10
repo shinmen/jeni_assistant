@@ -28,8 +28,4 @@ class DateTimePickerViewModel @Inject constructor() : ViewModel() {
         }
         mutableDatetimePicked.postValue(timeUpdated)
     }
-
-    fun reset() {
-        mutableDatetimePicked.postValue(LocalDateTime.now())
-    }
 }

@@ -22,7 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintHorizontal_weight="0.6"
-        app:layout_constraintEnd_toStartOf="@+id/check_done"
+        app:layout_constraintEnd_toStartOf="@+id/delete_rappel"
         app:layout_constraintStart_toEndOf="@id/text_rappel_time"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@sample/calendar.json/data/tasks/reminder" />
@@ -31,22 +31,11 @@
         android:id="@+id/delete_rappel"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/text_rappel"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/check_done"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
         app:layout_constraintHorizontal_weight="0.1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text_rappel"
         app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="false"
-        app:lottie_fileName="check_done.json"
-        app:lottie_loop="false"
-        app:lottie_speed="1" />
+        app:srcCompat="@android:drawable/ic_menu_delete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

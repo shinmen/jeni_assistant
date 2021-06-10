@@ -28,7 +28,12 @@ class RendezVousListAdapter(
         adapters.getOrDefault(viewType, SeparatorVousAdapter()).onCreateViewHolder(parent)
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
-        adapters.getOrDefault(getItemViewType(position), SeparatorVousAdapter()).onBindViewHolder(holder, calendarRows[position])
+        adapters.getOrDefault(getItemViewType(position), SeparatorVousAdapter()).onBindViewHolder(
+            holder,
+            calendarRows[position],
+            position,
+            this
+        )
 
     override fun getItemCount(): Int = calendarRows.size
 
@@ -36,6 +41,11 @@ class RendezVousListAdapter(
 
     interface RendezVousAdapter {
         fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder
-        fun onBindViewHolder(holder: RecyclerView.ViewHolder, calendarRow: CalendarRow)
+        fun onBindViewHolder(
+            holder: RecyclerView.ViewHolder,
+            calendarRow: CalendarRow,
+            position: Int,
+            adapter: RendezVousListAdapter
+        )
     }
 }

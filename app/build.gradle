@@ -63,9 +63,12 @@ dependencies {
 
     testImplementation "junit:junit:$junit"
     testImplementation "androidx.room:room-testing:$room_version"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlin_version"
+    testImplementation "androidx.arch.core:core-testing:$core_testing_version"
+    testImplementation "com.google.truth:truth:$truth_version"
     androidTestImplementation "androidx.test.ext:junit:$ext_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
-    testImplementation "org.mockito:mockito-core:$mockito_version"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
 
@@ -75,5 +78,4 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 
-    implementation "com.airbnb.android:lottie:$lottie_version"
 }

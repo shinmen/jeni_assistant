@@ -23,12 +23,10 @@ class RappelViewModel @Inject constructor(
         get() = mutableScheduleResult
 
     fun schedule(rappel: Rappel) {
-        viewModelScope.launch(coroutineContextProvider.IO) {
+        viewModelScope.launch(coroutineContextProvider.main) {
             mutableScheduleResult.postValue(Loading)
             val stateResult = useCase.handle(rappel)
-            withContext(coroutineContextProvider.Main) {
-                mutableScheduleResult.postValue(stateResult)
-            }
+            mutableScheduleResult.postValue(stateResult)
         }
     }
 }

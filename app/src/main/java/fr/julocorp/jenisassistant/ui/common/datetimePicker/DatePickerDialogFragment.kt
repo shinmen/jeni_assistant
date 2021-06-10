@@ -40,7 +40,7 @@ class DatePickerDialogFragment : DialogFragment(),
             requireActivity(),
             this,
             now.year,
-            now.monthValue,
+            now.monthValue - MONTH_INDEX_FIXER,
             now.dayOfMonth
         )
     }

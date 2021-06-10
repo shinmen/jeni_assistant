@@ -12,7 +12,12 @@ class EstimationVousAdapter : RendezVousListAdapter.RendezVousAdapter {
         parent.inflate(R.layout.viewholder_rdv_estimation)
     )
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, calendarRow: CalendarRow) {
+    override fun onBindViewHolder(
+        holder: RecyclerView.ViewHolder,
+        calendarRow: CalendarRow,
+        position: Int,
+        adapter: RendezVousListAdapter
+    ) {
         //holder.itemView.findViewById()
     }
 

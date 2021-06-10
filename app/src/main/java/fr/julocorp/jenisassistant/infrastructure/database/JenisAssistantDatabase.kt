@@ -2,15 +2,15 @@ package fr.julocorp.jenisassistant.infrastructure.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import fr.julocorp.jenisassistant.infrastructure.common.database.RappelEntity
-import fr.julocorp.jenisassistant.infrastructure.common.database.RappelDao
+import fr.julocorp.jenisassistant.infrastructure.common.database.RoomRappelEntity
+import fr.julocorp.jenisassistant.infrastructure.common.database.RoomRappelDao
 
 @Database(
-    entities = [RappelEntity::class],
+    entities = [RoomRappelEntity::class],
     version = JenisAssistantDatabase.DATABASE_VERSION
 )
 abstract class JenisAssistantDatabase : RoomDatabase() {
-    abstract fun rappelDao(): RappelDao
+    abstract fun rappelDao(): RoomRappelDao
 
     companion object {
         const val DATABASE_VERSION = 1

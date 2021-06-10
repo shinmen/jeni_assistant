@@ -15,7 +15,12 @@ class DayAdapter : RendezVousListAdapter.RendezVousAdapter {
         parent.inflate(R.layout.viewholder_rdv_day)
     )
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, calendarRow: CalendarRow) {
+    override fun onBindViewHolder(
+        holder: RecyclerView.ViewHolder,
+        calendarRow: CalendarRow,
+        position: Int,
+        adapter: RendezVousListAdapter
+    ) {
         (holder as DayViewHolder).textDay.text = (calendarRow as DayRow).day
             .format(DateTimeFormatter.ofPattern("EE d MMM y"))
     }

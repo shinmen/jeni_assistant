@@ -3,10 +3,10 @@ package fr.julocorp.jenisassistant.infrastructure.common.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import fr.julocorp.jenisassistant.infrastructure.common.database.RappelEntity.Companion.RAPPEL_TABLE
+import fr.julocorp.jenisassistant.infrastructure.common.database.RoomRappelEntity.Companion.RAPPEL_TABLE
 
 @Entity(tableName = RAPPEL_TABLE)
-data class RappelEntity(
+data class RoomRappelEntity(
     @PrimaryKey val uid: String,
     @ColumnInfo(name = "rappel_date") val rappelDate: Long,
     @ColumnInfo(name = "sujet") val sujet: String,
