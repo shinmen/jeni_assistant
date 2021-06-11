@@ -2,8 +2,8 @@ package fr.julocorp.jenisassistant.infrastructure.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import fr.julocorp.jenisassistant.infrastructure.common.database.RoomRappelEntity
-import fr.julocorp.jenisassistant.infrastructure.common.database.RoomRappelDao
+import fr.julocorp.jenisassistant.infrastructure.calendar.database.RoomRappelEntity
+import fr.julocorp.jenisassistant.infrastructure.calendar.database.RoomRappelDao
 
 @Database(
     entities = [RoomRappelEntity::class],

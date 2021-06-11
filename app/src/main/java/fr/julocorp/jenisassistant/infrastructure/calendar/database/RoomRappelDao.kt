@@ -1,9 +1,9 @@
-package fr.julocorp.jenisassistant.infrastructure.common.database
+package fr.julocorp.jenisassistant.infrastructure.calendar.database
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import fr.julocorp.jenisassistant.infrastructure.common.database.RoomRappelEntity.Companion.RAPPEL_TABLE
+import fr.julocorp.jenisassistant.infrastructure.calendar.database.RoomRappelEntity.Companion.RAPPEL_TABLE
 
 @Dao
 interface RoomRappelDao {

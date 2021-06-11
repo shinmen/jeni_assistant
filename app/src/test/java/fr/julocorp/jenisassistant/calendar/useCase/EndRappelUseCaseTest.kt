@@ -1,12 +1,12 @@
-package fr.julocorp.jenisassistant.useCase
+package fr.julocorp.jenisassistant.calendar.useCase
 
 import com.google.common.truth.Truth.assertThat
 import fr.julocorp.jenisassistant.TestCoroutineContextProvider
 import fr.julocorp.jenisassistant.domain.Failure
 import fr.julocorp.jenisassistant.domain.Success
 import fr.julocorp.jenisassistant.domain.common.Rappel
-import fr.julocorp.jenisassistant.domain.common.repository.RappelRepository
-import fr.julocorp.jenisassistant.domain.common.useCase.EndRappel
+import fr.julocorp.jenisassistant.domain.calendar.repository.RappelRepository
+import fr.julocorp.jenisassistant.domain.calendar.useCase.EndRappel
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
 import org.mockito.Mockito.*

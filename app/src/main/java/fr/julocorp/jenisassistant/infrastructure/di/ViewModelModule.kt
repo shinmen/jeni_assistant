@@ -6,6 +6,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import fr.julocorp.jenisassistant.ui.calendar.list.CalendarViewModel
+import fr.julocorp.jenisassistant.ui.calendar.schedule.CalendarEstimationViewModel
 import fr.julocorp.jenisassistant.ui.calendar.schedule.RappelViewModel
 import fr.julocorp.jenisassistant.ui.common.datetimePicker.DateTimePickerViewModel
 import javax.inject.Singleton
@@ -31,4 +32,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(CalendarViewModel::class)
     abstract fun calendarViewModel(viewModel: CalendarViewModel): ViewModel
+
+    @Singleton
+    @Binds
+    @IntoMap
+    @ViewModelKey(CalendarEstimationViewModel::class)
+    abstract fun calendarEstimationViewModel(viewModel: CalendarEstimationViewModel): ViewModel
 }

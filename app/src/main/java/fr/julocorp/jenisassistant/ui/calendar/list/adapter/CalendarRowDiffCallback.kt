@@ -1,6 +1,7 @@
-package fr.julocorp.jenisassistant.ui.calendar.list
+package fr.julocorp.jenisassistant.ui.calendar.list.adapter
 
 import androidx.recyclerview.widget.DiffUtil
+import fr.julocorp.jenisassistant.ui.calendar.list.CalendarRow
 
 class CalendarRowDiffCallback(private val oldList: List<CalendarRow>, private val newList: List<CalendarRow>): DiffUtil.Callback() {
     override fun getOldListSize() = oldList.size

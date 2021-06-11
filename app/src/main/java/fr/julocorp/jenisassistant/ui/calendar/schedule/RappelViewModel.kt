@@ -7,10 +7,9 @@ import androidx.lifecycle.viewModelScope
 import fr.julocorp.jenisassistant.domain.GenericActionState
 import fr.julocorp.jenisassistant.domain.Loading
 import fr.julocorp.jenisassistant.domain.common.Rappel
-import fr.julocorp.jenisassistant.domain.common.useCase.ScheduleRappel
+import fr.julocorp.jenisassistant.domain.calendar.useCase.ScheduleRappel
 import fr.julocorp.jenisassistant.infrastructure.common.CoroutineContextProvider
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class RappelViewModel @Inject constructor(

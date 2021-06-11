@@ -27,7 +27,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.inject.Inject
 
-class ReminderFragment : Fragment() {
+class RappelFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var dateTimePickerViewModel: DateTimePickerViewModel
@@ -116,6 +116,6 @@ class ReminderFragment : Fragment() {
         const val TAG = "reminderFragment"
 
         @JvmStatic
-        fun newInstance() = ReminderFragment()
+        fun newInstance() = RappelFragment()
     }
 }

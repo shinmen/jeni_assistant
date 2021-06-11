@@ -1,8 +1,6 @@
 package fr.julocorp.jenisassistant.ui
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -13,7 +11,6 @@ import dagger.android.HasAndroidInjector
 import fr.julocorp.jenisassistant.R
 import fr.julocorp.jenisassistant.ui.boitage.BoitageFragment
 import fr.julocorp.jenisassistant.ui.calendar.list.CalendarFragment
-import fr.julocorp.jenisassistant.ui.contact.ContactFragment
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), HasAndroidInjector {
@@ -34,7 +31,6 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
             when (it.itemId) {
                 R.id.navigation_rendez_vous -> setCurrentFragment(CalendarFragment.newInstance())
                 R.id.navigation_boitage -> setCurrentFragment(BoitageFragment())
-                R.id.navigation_contact_telephone -> setCurrentFragment(ContactFragment())
             }
             true
         }

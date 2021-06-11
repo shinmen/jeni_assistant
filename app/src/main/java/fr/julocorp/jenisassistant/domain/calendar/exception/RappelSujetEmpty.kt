@@ -1,4 +1,4 @@
-package fr.julocorp.jenisassistant.domain.common.useCase
+package fr.julocorp.jenisassistant.domain.calendar.exception
 
 import java.lang.RuntimeException
 

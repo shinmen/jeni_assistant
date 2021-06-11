@@ -5,8 +5,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import fr.julocorp.jenisassistant.infrastructure.ViewType
 import fr.julocorp.jenisassistant.ui.calendar.list.CalendarRow
-import fr.julocorp.jenisassistant.ui.calendar.list.CalendarRowDiffCallback
-import fr.julocorp.jenisassistant.ui.calendar.list.SeparatorRow
 
 class RendezVousListAdapter(
     private val adapters: Map<ViewType, RendezVousAdapter>,

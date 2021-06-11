@@ -11,9 +11,4 @@
         android:icon="@android:drawable/sym_action_email"
         android:title="@string/title_boitage" />
 
-    <item
-        android:id="@+id/navigation_contact_telephone"
-        android:icon="@android:drawable/stat_sys_phone_call"
-        android:title="@string/title_contact_telephone" />
-
 </menu>

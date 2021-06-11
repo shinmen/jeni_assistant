@@ -17,7 +17,7 @@ import fr.julocorp.jenisassistant.ui.calendar.CalendarActionFragment
 import fr.julocorp.jenisassistant.ui.calendar.OnCalendarActionListener
 import fr.julocorp.jenisassistant.ui.calendar.list.adapter.*
 import fr.julocorp.jenisassistant.ui.calendar.schedule.CalendarEstimationFragment
-import fr.julocorp.jenisassistant.ui.calendar.schedule.ReminderFragment
+import fr.julocorp.jenisassistant.ui.calendar.schedule.RappelFragment
 import java.util.*
 import javax.inject.Inject
 
@@ -81,7 +81,7 @@ class CalendarFragment : Fragment(), OnCalendarActionListener {
         val actions = listOf(
             { CalendarEstimationFragment.newInstance() },
             { CalendarEstimationFragment.newInstance() },
-            { ReminderFragment.newInstance() }
+            { RappelFragment.newInstance() }
         )
         val action = actions.getOrNull(indexOfSelection)
         action?.run {

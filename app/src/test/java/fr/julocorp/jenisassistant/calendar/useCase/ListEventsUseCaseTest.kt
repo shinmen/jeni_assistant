@@ -1,11 +1,11 @@
-package fr.julocorp.jenisassistant.useCase
+package fr.julocorp.jenisassistant.calendar.useCase
 
 import com.google.common.truth.Truth.assertThat
 import fr.julocorp.jenisassistant.TestCoroutineContextProvider
 import fr.julocorp.jenisassistant.domain.Success
 import fr.julocorp.jenisassistant.domain.common.Rappel
-import fr.julocorp.jenisassistant.domain.common.repository.RappelRepository
-import fr.julocorp.jenisassistant.domain.common.useCase.ListEvents
+import fr.julocorp.jenisassistant.domain.calendar.repository.RappelRepository
+import fr.julocorp.jenisassistant.domain.calendar.useCase.ListEvents
 import fr.julocorp.jenisassistant.ui.calendar.list.CalendarRow
 import fr.julocorp.jenisassistant.ui.calendar.list.DayRow
 import fr.julocorp.jenisassistant.ui.calendar.list.RappelRow

@@ -1,13 +1,13 @@
-package fr.julocorp.jenisassistant.useCase
+package fr.julocorp.jenisassistant.calendar.useCase
 
 import com.google.common.truth.Truth.assertThat
 import fr.julocorp.jenisassistant.TestCoroutineContextProvider
 import fr.julocorp.jenisassistant.domain.Failure
 import fr.julocorp.jenisassistant.domain.Success
 import fr.julocorp.jenisassistant.domain.common.Rappel
-import fr.julocorp.jenisassistant.domain.common.repository.RappelRepository
-import fr.julocorp.jenisassistant.domain.common.useCase.RappelSujetEmpty
-import fr.julocorp.jenisassistant.domain.common.useCase.ScheduleRappel
+import fr.julocorp.jenisassistant.domain.calendar.repository.RappelRepository
+import fr.julocorp.jenisassistant.domain.calendar.exception.RappelSujetEmpty
+import fr.julocorp.jenisassistant.domain.calendar.useCase.ScheduleRappel
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
 import org.junit.runner.RunWith

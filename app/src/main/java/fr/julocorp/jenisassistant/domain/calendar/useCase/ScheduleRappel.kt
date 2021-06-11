@@ -1,10 +1,11 @@
-package fr.julocorp.jenisassistant.domain.common.useCase
+package fr.julocorp.jenisassistant.domain.calendar.useCase
 
 import fr.julocorp.jenisassistant.domain.Failure
 import fr.julocorp.jenisassistant.domain.GenericActionState
 import fr.julocorp.jenisassistant.domain.Success
 import fr.julocorp.jenisassistant.domain.common.Rappel
-import fr.julocorp.jenisassistant.domain.common.repository.RappelRepository
+import fr.julocorp.jenisassistant.domain.calendar.exception.RappelSujetEmpty
+import fr.julocorp.jenisassistant.domain.calendar.repository.RappelRepository
 import fr.julocorp.jenisassistant.infrastructure.common.CoroutineContextProvider
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

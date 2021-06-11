@@ -1,8 +1,8 @@
-package fr.julocorp.jenisassistant.domain.common.useCase
+package fr.julocorp.jenisassistant.domain.calendar.useCase
 
 import fr.julocorp.jenisassistant.domain.GenericActionState
 import fr.julocorp.jenisassistant.domain.Success
-import fr.julocorp.jenisassistant.domain.common.repository.RappelRepository
+import fr.julocorp.jenisassistant.domain.calendar.repository.RappelRepository
 import fr.julocorp.jenisassistant.infrastructure.common.CoroutineContextProvider
 import fr.julocorp.jenisassistant.ui.calendar.list.CalendarRow
 import fr.julocorp.jenisassistant.ui.calendar.list.DayRow

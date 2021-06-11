@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import fr.julocorp.jenisassistant.domain.Success
-import fr.julocorp.jenisassistant.domain.common.useCase.EndRappel
-import fr.julocorp.jenisassistant.domain.common.useCase.ListEvents
+import fr.julocorp.jenisassistant.domain.calendar.useCase.EndRappel
+import fr.julocorp.jenisassistant.domain.calendar.useCase.ListEvents
 import fr.julocorp.jenisassistant.infrastructure.common.CoroutineContextProvider
 import kotlinx.coroutines.launch
 import java.util.*

@@ -1,4 +1,4 @@
-package fr.julocorp.jenisassistant.domain.common.repository
+package fr.julocorp.jenisassistant.domain.calendar.repository
 
 import fr.julocorp.jenisassistant.domain.common.Rappel
 import java.util.*

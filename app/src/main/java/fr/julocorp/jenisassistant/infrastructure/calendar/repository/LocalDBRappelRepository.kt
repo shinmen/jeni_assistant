@@ -1,9 +1,9 @@
-package fr.julocorp.jenisassistant.infrastructure.calendar
+package fr.julocorp.jenisassistant.infrastructure.calendar.repository
 
 import fr.julocorp.jenisassistant.domain.common.Rappel
-import fr.julocorp.jenisassistant.domain.common.repository.RappelRepository
-import fr.julocorp.jenisassistant.infrastructure.common.database.RoomRappelDao
-import fr.julocorp.jenisassistant.infrastructure.common.database.RoomRappelEntity
+import fr.julocorp.jenisassistant.domain.calendar.repository.RappelRepository
+import fr.julocorp.jenisassistant.infrastructure.calendar.database.RoomRappelDao
+import fr.julocorp.jenisassistant.infrastructure.calendar.database.RoomRappelEntity
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
