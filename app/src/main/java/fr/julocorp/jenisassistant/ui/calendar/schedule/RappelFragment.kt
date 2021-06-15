@@ -14,8 +14,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import fr.julocorp.jenisassistant.R
-import fr.julocorp.jenisassistant.domain.*
+import fr.julocorp.jenisassistant.domain.common.Failure
+import fr.julocorp.jenisassistant.domain.common.Loading
 import fr.julocorp.jenisassistant.domain.common.Rappel
+import fr.julocorp.jenisassistant.domain.common.Success
 import fr.julocorp.jenisassistant.infrastructure.di.ViewModelFactory
 import fr.julocorp.jenisassistant.infrastructure.error
 import fr.julocorp.jenisassistant.infrastructure.success
@@ -37,12 +39,12 @@ class RappelFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.reminder_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_rappel, container, false)
     }
 
     override fun onAttach(context: Context) {
-        super.onAttach(context)
         AndroidSupportInjection.inject(this)
+        super.onAttach(context)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -63,7 +65,8 @@ class RappelFragment : Fragment() {
                     DatePickerDialogFragment.newInstance().show(parentFragmentManager, TAG)
                 }
                 dateTimePickerViewModel.dateTimePicked.observe(viewLifecycleOwner) {
-                    text = it.format(DateTimeFormatter.ofPattern(context.getString(R.string.datetime_pattern_full)))
+                    text =
+                        it.format(DateTimeFormatter.ofPattern(context.getString(R.string.datetime_pattern_full)))
                 }
             }
             findViewById<Button>(R.id.save_button).setOnClickListener {
@@ -83,11 +86,10 @@ class RappelFragment : Fragment() {
                         loaderView.visibility = View.GONE
                         Snackbar.make(
                             this.rootView.findViewById(R.id.content),
-                            context.getString(R.string.rappel_save),
+                            getString(R.string.rappel_save),
                             Snackbar.LENGTH_SHORT
                         )
                             .success(requireContext())
-                            .show()
                         parentFragmentManager
                             .beginTransaction()
                             .replace(
@@ -105,7 +107,6 @@ class RappelFragment : Fragment() {
                             Snackbar.LENGTH_SHORT
                         )
                             .error(requireContext())
-                            .show()
                     }
                 }
             }

@@ -2,14 +2,28 @@ package fr.julocorp.jenisassistant.ui.common.adresseGeolocation
 
 import android.content.Context
 import android.widget.ArrayAdapter
-import androidx.recyclerview.widget.DiffUtil
+import android.widget.Filter
 import fr.julocorp.jenisassistant.domain.common.FullAddress
-import fr.julocorp.jenisassistant.ui.calendar.list.adapter.CalendarRowDiffCallback
 
-class GeoLocationListAdapter(context: Context, resource: Int): ArrayAdapter<FullAddress>(context, resource) {
+class GeoLocationListAdapter(
+    context: Context,
+    resource: Int,
+    private val addresseFilter: Filter = AddresseFilter()
+) : ArrayAdapter<FullAddress>(context, resource) {
+
     fun proposeNewAddresses(addressePropositions: List<FullAddress>) {
         clear()
         addAll(addressePropositions)
         notifyDataSetChanged()
     }
+
+    override fun getFilter(): Filter = addresseFilter
 }
+
+class AddresseFilter : Filter() {
+    override fun performFiltering(constraint: CharSequence?): FilterResults  = FilterResults()
+
+    override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+    }
+}
+

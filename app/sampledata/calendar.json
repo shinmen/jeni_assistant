@@ -12,12 +12,22 @@
       ],
       "visite": [
         {
+          "address": "8 rue pasteur 33200 Bordeaux"
+        },
+        {
+          "address": "15 rue laporte 33200 Bordeaux"
+        }
+      ],
+      "estimation": [
+        {
           "address": "8 rue pasteur 33200 Bordeaux",
-          "contact": "Mme Lois Lane"
+          "phone": "0641668953",
+          "email": "s.rogers@avengers.com"
         },
         {
           "address": "15 rue laporte 33200 Bordeaux",
-          "contact": "Mr Clark Kent"
+          "phone": "0578994211",
+          "email": "b.banner@avengers.com"
         }
       ]
     },
@@ -32,12 +42,22 @@
       ],
       "visite": [
         {
-          "address": "15 rue lacanau 33200 Bordeaux",
-          "contact": "Mr Steve Rogers"
+          "address": "15 rue lacanau 33200 Bordeaux"
         },
         {
-          "address": "103 bis rue Etchenique 33200 Bordeaux",
-          "contact": "Mr Tony Stark"
+          "address": "103 bis rue Etchenique 33200 Bordeaux"
+        }
+      ],
+      "estimation": [
+        {
+          "address": "290 rue pasteur 33200 Bordeaux",
+          "phone": "075549663377",
+          "email": "clark.kent@daily-planet.com"
+        },
+        {
+          "address": "5 rue Gambetta 33200 Bordeaux",
+          "phone": "065544778899",
+          "email": "lois.lane@daily-planet.com"
         }
       ]
     }

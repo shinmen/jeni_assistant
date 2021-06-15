@@ -31,7 +31,15 @@ data class VisiteRow(val id: UUID, val address: String, val contact: String, val
     override fun getId() = id.toString()
 }
 
-data class EstimationRow(val id: UUID, val address: String, val contact: String, val date: LocalDateTime): CalendarRow() {
+data class EstimationRow(
+    val id: UUID,
+    val address: String,
+    val contactFullname: String,
+    val contactPhone: String?,
+    val contactEmail: String?,
+    val contactComment: String?,
+    val date: LocalDateTime
+    ): CalendarRow() {
     companion object {
         const val VIEW_TYPE = 4
     }

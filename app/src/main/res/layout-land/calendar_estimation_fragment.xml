@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    tools:context=".ui.calendar.schedule.CalendarEstimationFragment">
+
+    <ImageView
+        android:id="@+id/calendar_meeting_icon"
+        android:layout_width="@dimen/side_icon_width"
+        android:layout_height="@dimen/side_icon_height"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:contentDescription="@string/description_icon"
+        android:src="@drawable/ic_meeting_deadlines"
+        app:layout_constraintEnd_toStartOf="@+id/datetime_picker"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/datetime_picker"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/text_margin"
+        android:hint="@string/date_and_time"
+        android:importantForAutofill="no"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_view_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toEndOf="@+id/calendar_meeting_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="12 avril à 14h40" />
+
+    <ImageView
+        android:id="@+id/calendar_adress_icon"
+        android:layout_width="@dimen/side_icon_width"
+        android:layout_height="@dimen/side_icon_height"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:contentDescription="@string/description_icon"
+        android:src="@drawable/ic_location_pin"
+        app:layout_constraintBottom_toBottomOf="@id/address"
+        app:layout_constraintEnd_toStartOf="@+id/address"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/datetime_picker" />
+
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:dropDownHeight="wrap_content"
+        android:hint="@string/adresse"
+        android:autofillHints=".AUTOFILL_HINT_POSTAL_ADDRESS"
+        android:inputType="textAutoComplete"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/loader"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toEndOf="@+id/calendar_adress_icon"
+        app:layout_constraintTop_toBottomOf="@id/datetime_picker"
+        tools:text="1 rue du parc 33200 Bordeaux" />
+
+    <ProgressBar
+        android:id="@+id/loader"
+        android:layout_width="@dimen/side_icon_height"
+        android:layout_height="@dimen/side_icon_height"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toEndOf="@+id/address"
+        app:layout_constraintTop_toBottomOf="@id/datetime_picker"
+        tools:visibility="visible" />
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/separator_thickness"
+        android:background="@color/dirt_dark"
+        android:layout_margin="@dimen/large_vertical_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/address" />
+
+    <ImageView
+        android:id="@+id/calendar_contact_icon"
+        android:layout_width="@dimen/side_icon_width"
+        android:layout_height="@dimen/side_icon_height"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:contentDescription="@string/description_icon"
+        android:src="@drawable/ic_contact_book"
+        app:layout_constraintBottom_toBottomOf="@id/proprietaire"
+        app:layout_constraintEnd_toStartOf="@+id/proprietaire"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/separator" />
+
+    <EditText
+        android:id="@+id/proprietaire"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:hint="@string/nom_du_contact"
+        android:autofillHints=".AUTOFILL_HINT_PERSON_NAME"
+        android:inputType="text"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toEndOf="@+id/calendar_contact_icon"
+        app:layout_constraintTop_toBottomOf="@+id/separator"
+        tools:text="Mr Jean Dupont" />
+
+    <View
+        android:id="@+id/view_shifter"
+        android:layout_width="@dimen/side_icon_width"
+        android:layout_height="@dimen/separator_thickness"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        app:layout_constraintEnd_toStartOf="@+id/contact_phone"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@+id/separator" />
+
+    <EditText
+        android:id="@+id/contact_phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="phone"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:textAlignment="center"
+        android:autofillHints=".AUTOFILL_HINT_PHONE_NUMBER"
+        android:hint="@string/phone_number"
+        tools:text="06 58 16 44 22"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toEndOf="@+id/view_shifter"
+        app:layout_constraintTop_toBottomOf="@+id/proprietaire" />
+
+    <EditText
+        android:id="@+id/contact_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:autofillHints=".AUTOFILL_HINT_EMAIL_ADDRESS"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view_shifter"
+        app:layout_constraintTop_toBottomOf="@+id/contact_phone"
+        tools:text="jean.dupont@mail.com" />
+
+    <EditText
+        android:id="@+id/contact_commentaire"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/textarea"
+        android:maxHeight="@dimen/textarea"
+        android:inputType="textMultiLine"
+        android:importantForAutofill="no"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:gravity="start|bottom"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        android:hint="@string/commentaire_a_ajouter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view_shifter"
+        app:layout_constraintTop_toBottomOf="@+id/contact_email" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_between_text"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:text="@string/save_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contact_commentaire" />
+</androidx.constraintlayout.widget.ConstraintLayout>

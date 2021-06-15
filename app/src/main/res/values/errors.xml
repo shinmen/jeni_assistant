@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_map">%s : %s</string>
+    <string name="generic_error">Une erreur est survenue</string>
+    <string name="missing_address">Il faut nécessairement une adresse</string>
+    <string name="required_field">Une valeur est requise</string>
+</resources>

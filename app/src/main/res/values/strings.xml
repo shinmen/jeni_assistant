@@ -17,6 +17,7 @@
     <string name="description_icon">icon</string>
     <string name="save_label">Enregister</string>
     <string name="rappel_save">Rappel enregistré</string>
+    <string name="rendezvous_save">Rendez-vous enregistré</string>
     <string-array name="calendar_actions">
         <item>Programmer une estimation</item>
         <item>Programmer une visite</item>
@@ -25,5 +26,8 @@
 
     <!-- date pattern -->
     <string name="datetime_pattern_full">EE d MMM y à H:mm</string>
+    <string name="phone_number">Numéro de tél</string>
+    <string name="email">Email</string>
+    <string name="commentaire_a_ajouter">Info à rajouter</string>
 
 </resources>

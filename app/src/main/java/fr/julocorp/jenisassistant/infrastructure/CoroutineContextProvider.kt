@@ -1,4 +1,4 @@
-package fr.julocorp.jenisassistant.infrastructure.common
+package fr.julocorp.jenisassistant.infrastructure
 
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject

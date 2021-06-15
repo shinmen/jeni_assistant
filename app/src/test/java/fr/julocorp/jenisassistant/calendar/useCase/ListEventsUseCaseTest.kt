@@ -2,7 +2,7 @@ package fr.julocorp.jenisassistant.calendar.useCase
 
 import com.google.common.truth.Truth.assertThat
 import fr.julocorp.jenisassistant.TestCoroutineContextProvider
-import fr.julocorp.jenisassistant.domain.Success
+import fr.julocorp.jenisassistant.domain.common.Success
 import fr.julocorp.jenisassistant.domain.common.Rappel
 import fr.julocorp.jenisassistant.domain.calendar.repository.RappelRepository
 import fr.julocorp.jenisassistant.domain.calendar.useCase.ListEvents
@@ -32,7 +32,7 @@ class ListEventsUseCaseTest {
         val result = useCase.handle()
 
         assertThat(result).isInstanceOf(Success::class.java)
-        val rows = (result as Success).result as List<CalendarRow>
+        val rows = (result as Success).result
         assertThat(rows).hasSize(7)
         assertThat(rows.filterIsInstance<SeparatorRow>()).hasSize(2)
         assertThat(rows.filterIsInstance<DayRow>()).hasSize(2)

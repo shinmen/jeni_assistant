@@ -22,4 +22,13 @@ open class LocalDbModule {
     @Singleton
     @Provides
     open fun providesRappelDao(database: JenisAssistantDatabase) = database.rappelDao()
+
+    @Singleton
+    @Provides
+    open fun providesCalendarEstimationDao(database: JenisAssistantDatabase) = database.calendarEstimationDao()
+
+    @Singleton
+    @Provides
+    open fun providesCalendarEstimationWithProprietaireDao(database: JenisAssistantDatabase) =
+        database.calendarEstimationWithProprietaireDao()
 }

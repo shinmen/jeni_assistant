@@ -21,7 +21,5 @@ class SeparatorVousAdapter : RendezVousListAdapter.RendezVousAdapter {
         //holder.itemView.findViewById()
     }
 
-    inner class DayViewHolder(item: View) : RecyclerView.ViewHolder(item) {
-
-    }
+    inner class DayViewHolder(item: View) : RecyclerView.ViewHolder(item)
 }

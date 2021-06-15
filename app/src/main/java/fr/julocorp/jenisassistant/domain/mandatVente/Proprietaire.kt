@@ -8,5 +8,5 @@ data class Proprietaire(
     val firstname: String,
     val telephones: List<String>,
     val email: String?,
-    val detail: String?
+    val comment: String?
 )

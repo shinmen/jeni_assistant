@@ -4,5 +4,7 @@ import fr.julocorp.jenisassistant.domain.common.FullAddress
 import kotlinx.coroutines.flow.Flow
 
 interface AdresseSearcher {
-    suspend fun findByPartialAddress(address: String): Flow<List<FullAddress>>
+    //suspend fun findByPartialAddress(address: String): Flow<List<FullAddress>>
+    suspend fun findByPartialAddress(address: String): List<FullAddress>
+
 }

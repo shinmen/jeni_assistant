@@ -33,7 +33,6 @@ abstract class ViewModelModule {
     @ViewModelKey(CalendarViewModel::class)
     abstract fun calendarViewModel(viewModel: CalendarViewModel): ViewModel
 
-    @Singleton
     @Binds
     @IntoMap
     @ViewModelKey(CalendarEstimationViewModel::class)

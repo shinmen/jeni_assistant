@@ -2,15 +2,24 @@ package fr.julocorp.jenisassistant.infrastructure.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import fr.julocorp.jenisassistant.infrastructure.calendar.database.RoomRappelEntity
-import fr.julocorp.jenisassistant.infrastructure.calendar.database.RoomRappelDao
+import androidx.room.TypeConverters
+import fr.julocorp.jenisassistant.infrastructure.calendar.database.*
 
 @Database(
-    entities = [RoomRappelEntity::class],
+    entities = [
+        RappelEntity::class,
+        CalendarEstimationEntity::class,
+        ProprietaireEntity::class,
+    ],
     version = JenisAssistantDatabase.DATABASE_VERSION
 )
+@TypeConverters(UuidConverter::class)
 abstract class JenisAssistantDatabase : RoomDatabase() {
-    abstract fun rappelDao(): RoomRappelDao
+    abstract fun rappelDao(): RappelDao
+
+    abstract fun calendarEstimationDao(): CalendarEstimationDao
+
+    abstract fun calendarEstimationWithProprietaireDao(): CalendarEstimationWithProprietaireDao
 
     companion object {
         const val DATABASE_VERSION = 1

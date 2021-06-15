@@ -16,16 +16,13 @@ class MandatVente(
             val scheduleCallTime = scheduleCallDisponibilites()
             calendar.addRappel(Rappel(UUID.randomUUID(), scheduleCallTime, bien.toString()))
         } else {
-            calendar.addRendezVousEstimation(scheduleRendezVousEstimation(disponibilites))
+            //calendar.addRendezVousEstimation(scheduleRendezVousEstimation(disponibilites))
         }
     }
 
-    fun scheduleRendezVousEstimation(disponibilites: LocalDateTime) = RendezVousEstimation(
-        disponibilites,
-        bien.adresse,
-        proprietaire.telephones.first(),
-        this
-    )
+    fun scheduleRendezVousEstimation(disponibilites: LocalDateTime) {
+
+    }
 
     fun cancelRendezVousEstimation(calendar: BusinessCalendar, rendezVousEstimation: RendezVousEstimation) {
         calendar.cancelRendezVousEstimation(rendezVousEstimation)

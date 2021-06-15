@@ -2,13 +2,8 @@ package fr.julocorp.jenisassistant.domain.prospection
 
 data class Contact(
     val type: ContactOrigin,
-    val firstname: String,
-    val lastname: String,
-    val adresse: AdresseProspect,
+    val fullname: String,
     val phoneNumber: PhoneNumber?,
     val email: Email?,
-    val detail: String?,
+    val commentaire: String?,
 )
-
-typealias PhoneNumber = String
-typealias Email = String

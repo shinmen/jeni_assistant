@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="field_address">Adresse</string>
+    <string name="field_fullname">Nom complet</string>
+    <string name="field_rendezvous_date">Date de rdv</string>
+    <string name="field_phone">N° de tèl</string>
+</resources>

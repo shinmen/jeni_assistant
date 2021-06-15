@@ -7,7 +7,7 @@ import fr.julocorp.jenisassistant.R
 import fr.julocorp.jenisassistant.infrastructure.inflate
 import fr.julocorp.jenisassistant.ui.calendar.list.CalendarRow
 
-class VisiteVousAdapter : RendezVousListAdapter.RendezVousAdapter {
+class VisiteRendezVousAdapter : RendezVousListAdapter.RendezVousAdapter {
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder = DayViewHolder(
         parent.inflate(R.layout.viewholder_rdv_day)
     )
@@ -21,7 +21,5 @@ class VisiteVousAdapter : RendezVousListAdapter.RendezVousAdapter {
         //holder.itemView.findViewById()
     }
 
-    inner class DayViewHolder(item: View) : RecyclerView.ViewHolder(item) {
-
-    }
+    inner class DayViewHolder(item: View) : RecyclerView.ViewHolder(item)
 }
