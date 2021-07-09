@@ -1,13 +1,15 @@
 package fr.julocorp.jenisassistant.domain.calendar.useCase
 
-import fr.julocorp.jenisassistant.domain.common.ActionState
-import fr.julocorp.jenisassistant.domain.common.Success
 import fr.julocorp.jenisassistant.domain.calendar.repository.RappelRepository
 import fr.julocorp.jenisassistant.domain.calendar.repository.RendezVousEstimationRepository
+import fr.julocorp.jenisassistant.domain.common.Failure
+import fr.julocorp.jenisassistant.domain.common.Loading
+import fr.julocorp.jenisassistant.domain.common.Rappel
+import fr.julocorp.jenisassistant.domain.common.Success
+import fr.julocorp.jenisassistant.domain.mandatVente.RendezVousEstimation
 import fr.julocorp.jenisassistant.infrastructure.CoroutineContextProvider
 import fr.julocorp.jenisassistant.ui.calendar.list.*
-import kotlinx.coroutines.async
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import java.time.LocalDate
 import java.util.*
 import javax.inject.Inject
@@ -17,16 +19,36 @@ class ListEvents @Inject constructor(
     private val rendezVousEstimationRepository: RendezVousEstimationRepository,
     private val coroutineContextProvider: CoroutineContextProvider
 ) {
-    suspend fun handle(): ActionState<List<CalendarRow>> = withContext(coroutineContextProvider.iO) {
-        val calendarRowsGroupedByDate = TreeMap<LocalDate, MutableList<CalendarRow>>()
-        calendarRowsGroupedByDate.putIfAbsent(
-            LocalDate.now(),
-            mutableListOf()
-        )
+    suspend fun handle() = withContext(coroutineContextProvider.main) {
+        try {
+            val calendarRowsGroupedByDate = TreeMap<LocalDate, MutableList<CalendarRow>>()
+            calendarRowsGroupedByDate.putIfAbsent(
+                LocalDate.now(),
+                mutableListOf()
+            )
+            supervisorScope {
+                val deferredRappels = async { rappelRepository.findRappels() }
+                val deferredRendezvousEstimations = async {
+                    rendezVousEstimationRepository.findRendezVousEstimations()
+                }
 
-        val deferredRappels = async { rappelRepository.findRappels() }
-        val deferredRendezvousEstimations = async { rendezVousEstimationRepository.findRendezVousEstimations() }
+                mapRappelsIntocalendarRows(deferredRappels, calendarRowsGroupedByDate)
+                mapRendezVousEstimationIntoCalendarRows(
+                    deferredRendezvousEstimations,
+                    calendarRowsGroupedByDate
+                )
+            }
 
+            Success(mapToListWithDaysAndSeparator(calendarRowsGroupedByDate))
+        } catch (e: Throwable) {
+            Failure(e)
+        }
+    }
+
+    private suspend fun mapRappelsIntocalendarRows(
+        deferredRappels: Deferred<List<Rappel>>,
+        calendarRowsGroupedByDate: TreeMap<LocalDate, MutableList<CalendarRow>>
+    ) {
         deferredRappels.await().also { rappels ->
             rappels
                 .map { rappel ->
@@ -38,7 +60,12 @@ class ListEvents @Inject constructor(
                     calendarRowsGroupedByDate[rappel.rappelDate.toLocalDate()]?.add(row)
                 }
         }
+    }
 
+    private suspend fun mapRendezVousEstimationIntoCalendarRows(
+        deferredRendezvousEstimations: Deferred<List<RendezVousEstimation>>,
+        calendarRowsGroupedByDate: TreeMap<LocalDate, MutableList<CalendarRow>>
+    ) {
         deferredRendezvousEstimations.await().also { rendezVousEstimations ->
             rendezVousEstimations
                 .map { rendezVousEstimation ->
@@ -55,22 +82,24 @@ class ListEvents @Inject constructor(
                         rendezVousEstimation.rendezVousDate.toLocalDate(),
                         mutableListOf()
                     )
-                    calendarRowsGroupedByDate[rendezVousEstimation.rendezVousDate.toLocalDate()]?.add(row)
+                    calendarRowsGroupedByDate[rendezVousEstimation.rendezVousDate.toLocalDate()]?.add(
+                        row
+                    )
                 }
         }
-
-        val calendarRows = calendarRowsGroupedByDate
-                .map { rowsGroupByDate ->
-                    val isToday = LocalDate.now().equals(rowsGroupByDate.key)
-                    if (rowsGroupByDate.value.isNotEmpty() || isToday) {
-                        rowsGroupByDate.value.add(0, DayRow(rowsGroupByDate.key, isToday))
-                        rowsGroupByDate.value.add(SeparatorRow)
-                    }
-
-                    rowsGroupByDate
-                }
-                .flatMap { rowsGroupByDate -> rowsGroupByDate.value.toList() }
-
-        Success(calendarRows)
     }
+
+    private fun mapToListWithDaysAndSeparator(
+        calendarRowsGroupedByDate: TreeMap<LocalDate, MutableList<CalendarRow>>
+    ): List<CalendarRow> = calendarRowsGroupedByDate
+        .map { rowsGroupByDate ->
+            val isToday = LocalDate.now().equals(rowsGroupByDate.key)
+            if (rowsGroupByDate.value.isNotEmpty() || isToday) {
+                rowsGroupByDate.value.add(0, DayRow(rowsGroupByDate.key, isToday))
+                rowsGroupByDate.value.add(SeparatorRow)
+            }
+
+            rowsGroupByDate
+        }
+        .flatMap { rowsGroupByDate -> rowsGroupByDate.value.toList() }
 }

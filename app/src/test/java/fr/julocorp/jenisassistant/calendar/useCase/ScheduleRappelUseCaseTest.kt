@@ -16,7 +16,6 @@ import org.mockito.junit.MockitoJUnitRunner
 import java.time.LocalDateTime
 import java.util.*
 
-@RunWith(MockitoJUnitRunner::class)
 class ScheduleRappelUseCaseTest {
     @Test
     fun `schedule rappel with valid inputs should be successfull`() = runBlockingTest {
@@ -28,7 +27,7 @@ class ScheduleRappelUseCaseTest {
     }
 
     @Test
-    fun `schedule rappel without sujet should fail`() = runBlockingTest {
+    fun `schedule rappel without sujet should return failure`() = runBlockingTest {
         val repo = mock(RappelRepository::class.java)
         val useCase = ScheduleRappel(repo, TestCoroutineContextProvider())
         val rappel = Rappel(UUID.randomUUID(), LocalDateTime.now(), "")

@@ -8,8 +8,11 @@ import fr.julocorp.jenisassistant.domain.calendar.useCase.EndRappel
 import fr.julocorp.jenisassistant.domain.calendar.useCase.EndRendezVousEstimation
 import fr.julocorp.jenisassistant.domain.calendar.useCase.ListEvents
 import fr.julocorp.jenisassistant.domain.common.ActionState
+import fr.julocorp.jenisassistant.domain.common.Loading
 import fr.julocorp.jenisassistant.infrastructure.CoroutineContextProvider
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 import java.util.*
 import javax.inject.Inject
 
@@ -20,7 +23,7 @@ class CalendarViewModel @Inject constructor(
     private val coroutineContextProvider: CoroutineContextProvider
 ) : ViewModel() {
 
-    private val mutableCalendarRows = MutableLiveData<ActionState<List<CalendarRow>>>()
+    private val mutableCalendarRows = MutableLiveData<ActionState<List<CalendarRow>>>(Loading())
 
     val calendarRows: LiveData<ActionState<List<CalendarRow>>>
         get() = mutableCalendarRows

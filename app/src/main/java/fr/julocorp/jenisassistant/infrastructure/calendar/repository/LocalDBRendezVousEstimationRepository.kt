@@ -52,23 +52,25 @@ class LocalDBRendezVousEstimationRepository @Inject constructor(
     }
 
     override suspend fun findRendezVousEstimations(): List<RendezVousEstimation> =
-        calendarEstimationWithProprietaireDao.getOnGoingRendezvousEstimation()
-            .map { calendarEstimationEntity ->
-                val rendezVousDate = LocalDateTime.ofInstant(
-                    Instant.ofEpochSecond(calendarEstimationEntity.calendarEstimation.rendezVousDate),
-                    ZoneId.of("Europe/Paris")
-                )
-                RendezVousEstimation(
-                    calendarEstimationEntity.calendarEstimation.id,
-                    rendezVousDate,
-                    calendarEstimationEntity.calendarEstimation.addresse,
-                    Contact(
-                        ContactOrigin.INOPINE,
-                        calendarEstimationEntity.proprietaire.fullname,
-                        calendarEstimationEntity.proprietaire.phoneNumber,
-                        calendarEstimationEntity.proprietaire.email,
-                        calendarEstimationEntity.proprietaire.commentaire,
+        withContext(coroutineContextProvider.iO) {
+            calendarEstimationWithProprietaireDao.getOnGoingRendezvousEstimation()
+                .map { calendarEstimationEntity ->
+                    val rendezVousDate = LocalDateTime.ofInstant(
+                        Instant.ofEpochSecond(calendarEstimationEntity.calendarEstimation.rendezVousDate),
+                        ZoneId.of("Europe/Paris")
                     )
-                )
-            }
+                    RendezVousEstimation(
+                        calendarEstimationEntity.calendarEstimation.id,
+                        rendezVousDate,
+                        calendarEstimationEntity.calendarEstimation.addresse,
+                        Contact(
+                            ContactOrigin.INOPINE,
+                            calendarEstimationEntity.proprietaire.fullname,
+                            calendarEstimationEntity.proprietaire.phoneNumber,
+                            calendarEstimationEntity.proprietaire.email,
+                            calendarEstimationEntity.proprietaire.commentaire,
+                        )
+                    )
+                }
+        }
 }

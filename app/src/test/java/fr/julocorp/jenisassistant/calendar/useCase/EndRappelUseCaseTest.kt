@@ -25,7 +25,7 @@ class EndRappelUseCaseTest {
     }
 
     @Test
-    fun `end rappel with error should fail`() = runBlockingTest {
+    fun `end rappel with error should return failure`() = runBlockingTest {
         val repo = mock(RappelRepository::class.java)
         val id = UUID.randomUUID()
         doThrow(RuntimeException()).`when`(repo).endRappel(id)

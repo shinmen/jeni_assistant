@@ -17,7 +17,7 @@ class NetworkModule {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(MoshiConverterFactory.create())
-            .baseUrl(ApiGeoGouvAdresseSearcher.API_GEO_GOUV_BASE_URL)
+            .baseUrl(ApiGeoGouvService.API_GEO_GOUV_BASE_URL)
             .client(okHttpClient)
             .build()
     }

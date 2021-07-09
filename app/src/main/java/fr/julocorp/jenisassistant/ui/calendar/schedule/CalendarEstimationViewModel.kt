@@ -3,12 +3,13 @@ package fr.julocorp.jenisassistant.ui.calendar.schedule
 import androidx.lifecycle.*
 import fr.julocorp.jenisassistant.R
 import fr.julocorp.jenisassistant.domain.calendar.exception.InvalidInput
-import fr.julocorp.jenisassistant.domain.calendar.useCase.ScheduleCalendarEstimation
+import fr.julocorp.jenisassistant.domain.calendar.useCase.ScheduleRendezVousEstimation
 import fr.julocorp.jenisassistant.domain.calendar.useCase.SearchFullAddressPropositionsWithPartialAddress
-import fr.julocorp.jenisassistant.domain.common.*
-import fr.julocorp.jenisassistant.domain.mandatVente.AdresseBien
+import fr.julocorp.jenisassistant.domain.common.ActionState
+import fr.julocorp.jenisassistant.domain.common.Failure
+import fr.julocorp.jenisassistant.domain.common.FullAddress
+import fr.julocorp.jenisassistant.domain.common.Loading
 import fr.julocorp.jenisassistant.domain.mandatVente.RendezVousEstimation
-import fr.julocorp.jenisassistant.domain.prospection.AdresseProspect
 import fr.julocorp.jenisassistant.domain.prospection.Contact
 import fr.julocorp.jenisassistant.domain.prospection.ContactOrigin
 import fr.julocorp.jenisassistant.infrastructure.CoroutineContextProvider
@@ -18,7 +19,7 @@ import javax.inject.Inject
 
 class CalendarEstimationViewModel @Inject constructor(
     private val searchFullAddressPropositionsWithPartialAddress: SearchFullAddressPropositionsWithPartialAddress,
-    private val scheduleCalendarEstimation: ScheduleCalendarEstimation,
+    private val scheduleRendezVousEstimation: ScheduleRendezVousEstimation,
     private val coroutineContextProvider: CoroutineContextProvider,
 ) : ViewModel() {
     private val mutableAddressePropositions = MutableLiveData<ActionState<List<FullAddress>>>()
@@ -37,12 +38,8 @@ class CalendarEstimationViewModel @Inject constructor(
     fun findAddress(search: String) {
         viewModelScope.launch(coroutineContextProvider.main) {
             mutableAddressePropositions.postValue(Loading())
-            try {
-                val listAddresses = searchFullAddressPropositionsWithPartialAddress.handle(search)
-                mutableAddressePropositions.postValue(Success(listAddresses))
-            } catch (e: Throwable) {
-                Failure<List<FullAddress>>(e)
-            }
+            val listAddresses = searchFullAddressPropositionsWithPartialAddress.handle(search)
+            mutableAddressePropositions.postValue(listAddresses)
         }
     }
 
@@ -69,7 +66,7 @@ class CalendarEstimationViewModel @Inject constructor(
                             input.comment,
                         )
                     )
-                    val result = scheduleCalendarEstimation.handle(rendezVousEstimation)
+                    val result = scheduleRendezVousEstimation.handle(rendezVousEstimation)
                     mutableRendezVousEstimationSave.postValue(result)
                 } catch (e: Throwable) {
                     mutableRendezVousEstimationSave.postValue(Failure(e))

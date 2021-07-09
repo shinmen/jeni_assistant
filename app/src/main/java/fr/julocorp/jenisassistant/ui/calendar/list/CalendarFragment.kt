@@ -2,6 +2,7 @@ package fr.julocorp.jenisassistant.ui.calendar.list
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,6 +56,7 @@ class CalendarFragment : Fragment(), OnCalendarActionListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         calendarViewModel =
             ViewModelProvider(this, viewModelFactory).get(CalendarViewModel::class.java)
+
         calendarViewModel.fetchCalendarRow()
 
         val action = view.findViewById<FloatingActionButton>(R.id.add_calendar_action)
@@ -80,7 +82,7 @@ class CalendarFragment : Fragment(), OnCalendarActionListener {
 
             calendarViewModel.calendarRows.observe(viewLifecycleOwner) { state ->
                 when (state) {
-                    is Loading -> view.findViewById<ProgressBar>(R.id.loader)
+                    is Loading -> loaderView.visibility = View.VISIBLE
                     is Failure -> {
                         loaderView.visibility = View.GONE
                         Snackbar.make(
@@ -91,6 +93,7 @@ class CalendarFragment : Fragment(), OnCalendarActionListener {
                             .error(requireContext())
                     }
                     is Success<List<CalendarRow>> -> {
+                        loaderView.visibility = View.GONE
                         val rows = state.result
                         rendezVousListAdapter.updateRows(rows)
                         val todayPosition = rows.indexOfFirst { it is DayRow && it.isToday }

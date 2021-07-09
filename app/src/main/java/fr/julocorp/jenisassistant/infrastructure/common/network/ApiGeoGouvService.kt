@@ -11,4 +11,8 @@ interface ApiGeoGouvService {
         @Query("autocomplete") autocomplete: Int = 1,
         @Query("type") type: String = "housenumber"
     ): ApiGeoGouvFeatureCollection
+
+    companion object {
+        const val API_GEO_GOUV_BASE_URL = "https://api-adresse.data.gouv.fr"
+    }
 }
