@@ -1,106 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/activity_vertical_margin"
-    >
+    android:layout_marginTop="@dimen/activity_vertical_margin">
 
     <TextView
         android:id="@+id/text_rdv_estimation_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
-        app:layout_constraintEnd_toStartOf="@+id/text_estimation_address"
+        app:layout_constraintEnd_toStartOf="@+id/card_contact"
         app:layout_constraintHorizontal_weight="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@tools:sample/date/hhmm" />
 
-    <TextView
-        android:id="@+id/text_estimation_address"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@id/delete_rdv_estimation"
-        app:layout_constraintHorizontal_weight="0.6"
-        app:layout_constraintStart_toEndOf="@id/text_rdv_estimation_time"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@sample/calendar.json/data/estimation/address" />
-
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_contact"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@id/delete_rdv_estimation"
-        app:layout_constraintHorizontal_weight="0.6"
-        android:layout_marginVertical="@dimen/small_vertical_margin"
-        app:layout_constraintStart_toEndOf="@id/text_rdv_estimation_time"
-        app:layout_constraintEnd_toStartOf="@id/delete_rdv_estimation"
-        app:layout_constraintTop_toBottomOf="@id/text_estimation_address"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:cardCornerRadius="@dimen/cardview_default_radius"
         app:cardElevation="@dimen/card_view_elevation"
-        >
+        app:layout_constraintEnd_toStartOf="@id/delete_rdv_estimation"
+        app:layout_constraintHorizontal_weight="0.6"
+        app:layout_constraintStart_toEndOf="@id/text_rdv_estimation_time"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <include layout="@layout/card_contact" />
+    </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:id="@+id/calendar_contact_icon"
-                android:layout_width="@dimen/side_icon_width"
-                android:layout_height="@dimen/side_icon_height"
-                android:layout_marginEnd="@dimen/small_vertical_margin"
-                android:layout_marginTop="@dimen/small_vertical_margin"
-                android:contentDescription="@string/description_icon"
-                android:src="@drawable/ic_contact_book"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/text_estimation_contact_fullname"
-                app:layout_constraintHorizontal_bias="0.1" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_weight="0.6"
+        android:layout_marginVertical="@dimen/small_vertical_margin"
+        app:layout_constraintEnd_toStartOf="@id/delete_rdv_estimation"
+        app:layout_constraintStart_toEndOf="@id/text_rdv_estimation_time"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_contact"
+        app:cardCornerRadius="@dimen/cardview_default_radius"
+        app:cardElevation="@dimen/card_view_elevation">
 
-            <TextView
-                android:id="@+id/text_estimation_contact_fullname"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_vertical_margin"
-                android:paddingHorizontal="@dimen/text_margin"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/calendar_contact_icon"
-                tools:text="@tools:sample/full_names" />
-
-            <TextView
-                android:id="@+id/text_estimation_contact_phone"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/text_margin"
-                android:layout_marginTop="@dimen/small_vertical_margin"
-                app:layout_constraintTop_toBottomOf="@id/text_estimation_contact_fullname"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="@sample/calendar.json/data/estimation/phone" />
-
-            <TextView
-                android:id="@+id/text_estimation_contact_email"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/text_margin"
-                android:layout_marginTop="@dimen/small_vertical_margin"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_estimation_contact_phone"
-                tools:text="@sample/calendar.json/data/estimation/email" />
-
-            <TextView
-                android:id="@+id/text_estimation_contact_comment"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/text_margin"
-                android:layout_marginTop="@dimen/small_vertical_margin"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_estimation_contact_email"
-                tools:text="@tools:sample/lorem" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <include layout="@layout/card_address"/>
     </androidx.cardview.widget.CardView>
 
     <ImageView
@@ -110,7 +55,7 @@
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_weight="0.1"
-        app:layout_constraintStart_toEndOf="@+id/text_estimation_address"
+        app:layout_constraintStart_toEndOf="@+id/card_address"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_delete" />
 

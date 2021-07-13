@@ -5,7 +5,6 @@ import fr.julocorp.jenisassistant.domain.common.ActionState
 import fr.julocorp.jenisassistant.domain.common.Failure
 import fr.julocorp.jenisassistant.domain.common.Success
 import fr.julocorp.jenisassistant.infrastructure.CoroutineContextProvider
-import kotlinx.coroutines.withContext
 import java.util.*
 import javax.inject.Inject
 
@@ -13,12 +12,12 @@ class EndRendezVousEstimation @Inject constructor(
     private val rendezVousEstimationRepository: RendezVousEstimationRepository,
     private val coroutineContextProvider: CoroutineContextProvider
 ) {
-    suspend fun handle(rendezVousEstimationId: UUID): ActionState<Boolean> = withContext(coroutineContextProvider.iO) {
+    suspend fun handle(rendezVousEstimationId: UUID): ActionState<Boolean> =
         try {
             rendezVousEstimationRepository.endRendezVousEstimation(rendezVousEstimationId)
             Success(true)
         } catch (e: Throwable) {
             Failure(e)
         }
-    }
+
 }

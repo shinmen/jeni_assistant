@@ -1,6 +1,8 @@
 package fr.julocorp.jenisassistant.ui.calendar.list
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import fr.julocorp.jenisassistant.R
 import fr.julocorp.jenisassistant.domain.common.Failure
+import fr.julocorp.jenisassistant.domain.common.FullAddress
 import fr.julocorp.jenisassistant.domain.common.Loading
 import fr.julocorp.jenisassistant.domain.common.Success
 import fr.julocorp.jenisassistant.infrastructure.di.ViewModelFactory
@@ -25,6 +28,7 @@ import fr.julocorp.jenisassistant.ui.calendar.OnCalendarActionListener
 import fr.julocorp.jenisassistant.ui.calendar.list.adapter.*
 import fr.julocorp.jenisassistant.ui.calendar.schedule.CalendarEstimationFragment
 import fr.julocorp.jenisassistant.ui.calendar.schedule.RappelFragment
+import fr.julocorp.jenisassistant.ui.mandatVente.EstimationFragment
 import java.util.*
 import javax.inject.Inject
 
@@ -40,6 +44,22 @@ class CalendarFragment : Fragment(), OnCalendarActionListener {
     private val rendezvousEstimationDeleteListener = { adapter: RendezVousListAdapter, position: Int, id: UUID ->
         adapter.remove(position)
         calendarViewModel.markRendezvousEstimationAsDone(id)
+    }
+
+    private val rendezVousEstimationStartListener = { rendezVousEstimationId: UUID ->
+        val fragment = EstimationFragment.newInstance(rendezVousEstimationId)
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.content, fragment, fragment.tag)
+            .addToBackStack(null)
+            .commit()
+        Unit
+    }
+
+    private val addressToMapListener = { address: String ->
+        val i = Intent(Intent.ACTION_VIEW, Uri.parse("google.navigation:?q=$address"))
+        val packageManager = requireActivity().packageManager
+        packageManager.resolveActivity(i, 0)?.run { startActivity(i) }
+        Unit
     }
 
     override fun onAttach(context: Context) {
@@ -74,7 +94,11 @@ class CalendarFragment : Fragment(), OnCalendarActionListener {
                 DayRow.VIEW_TYPE to DayAdapter(),
                 RappelRow.VIEW_TYPE to RappelAdapter(rappelDeleteListener),
                 VisiteRow.VIEW_TYPE to VisiteRendezVousAdapter(),
-                EstimationRow.VIEW_TYPE to EstimationRendezVousAdapter(rendezvousEstimationDeleteListener),
+                EstimationRow.VIEW_TYPE to EstimationRendezVousAdapter(
+                    rendezvousEstimationDeleteListener,
+                    rendezVousEstimationStartListener,
+                    addressToMapListener
+                ),
                 SeparatorRow.VIEW_TYPE to SeparatorVousAdapter()
             )
             val rendezVousListAdapter = RendezVousListAdapter(adapters)

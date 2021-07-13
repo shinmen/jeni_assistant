@@ -3,23 +3,22 @@ package fr.julocorp.jenisassistant.domain.calendar.useCase
 import fr.julocorp.jenisassistant.domain.calendar.repository.RappelRepository
 import fr.julocorp.jenisassistant.domain.calendar.repository.RendezVousEstimationRepository
 import fr.julocorp.jenisassistant.domain.common.Failure
-import fr.julocorp.jenisassistant.domain.common.Loading
 import fr.julocorp.jenisassistant.domain.common.Rappel
 import fr.julocorp.jenisassistant.domain.common.Success
 import fr.julocorp.jenisassistant.domain.mandatVente.RendezVousEstimation
-import fr.julocorp.jenisassistant.infrastructure.CoroutineContextProvider
 import fr.julocorp.jenisassistant.ui.calendar.list.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.async
+import kotlinx.coroutines.supervisorScope
 import java.time.LocalDate
 import java.util.*
 import javax.inject.Inject
 
 class ListEvents @Inject constructor(
     private val rappelRepository: RappelRepository,
-    private val rendezVousEstimationRepository: RendezVousEstimationRepository,
-    private val coroutineContextProvider: CoroutineContextProvider
+    private val rendezVousEstimationRepository: RendezVousEstimationRepository
 ) {
-    suspend fun handle() = withContext(coroutineContextProvider.main) {
+    suspend fun handle() =
         try {
             val calendarRowsGroupedByDate = TreeMap<LocalDate, MutableList<CalendarRow>>()
             calendarRowsGroupedByDate.putIfAbsent(
@@ -43,7 +42,7 @@ class ListEvents @Inject constructor(
         } catch (e: Throwable) {
             Failure(e)
         }
-    }
+
 
     private suspend fun mapRappelsIntocalendarRows(
         deferredRappels: Deferred<List<Rappel>>,

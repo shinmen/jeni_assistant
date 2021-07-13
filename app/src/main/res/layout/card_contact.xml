@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/calendar_contact_icon"
+        android:layout_width="@dimen/side_icon_width"
+        android:layout_height="@dimen/side_icon_height"
+        android:layout_marginTop="@dimen/small_vertical_margin"
+        android:layout_marginEnd="@dimen/small_vertical_margin"
+        android:contentDescription="@string/description_icon"
+        android:src="@drawable/ic_contact_book"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toEndOf="@id/text_contact_fullname"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_contact_fullname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_vertical_margin"
+        android:paddingHorizontal="@dimen/text_margin"
+        app:layout_constraintEnd_toStartOf="@id/calendar_contact_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/full_names" />
+
+    <TextView
+        android:id="@+id/text_contact_phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_vertical_margin"
+        android:paddingHorizontal="@dimen/text_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_contact_fullname"
+        tools:text="@sample/calendar.json/data/estimation/phone" />
+
+    <TextView
+        android:id="@+id/text_contact_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_vertical_margin"
+        android:paddingHorizontal="@dimen/text_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_contact_phone"
+        tools:text="@sample/calendar.json/data/estimation/email" />
+
+    <TextView
+        android:id="@+id/text_contact_comment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_vertical_margin"
+        android:paddingHorizontal="@dimen/text_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_contact_email"
+        tools:text="@tools:sample/lorem" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

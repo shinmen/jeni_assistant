@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
+import java.util.*
 
 @Dao
 abstract class CalendarEstimationWithProprietaireDao {
@@ -26,4 +27,9 @@ abstract class CalendarEstimationWithProprietaireDao {
     @Query("SELECT * FROM ${CalendarEstimationEntity.CALENDAR_ESTIMATION_TABLE} " +
             "WHERE `closed_at` IS NULL ORDER BY `estimation_date`")
     abstract fun getOnGoingRendezvousEstimation(): List<CalendarEstimationWithProprietaire>
+
+    @Transaction
+    @Query("SELECT * FROM ${CalendarEstimationEntity.CALENDAR_ESTIMATION_TABLE} " +
+            "WHERE id = :id LIMIT 1")
+    abstract fun findRendezvousEstimation(id: UUID): CalendarEstimationWithProprietaire?
 }

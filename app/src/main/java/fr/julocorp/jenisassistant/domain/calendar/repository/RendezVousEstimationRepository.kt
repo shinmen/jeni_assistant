@@ -9,4 +9,6 @@ interface RendezVousEstimationRepository {
     suspend fun endRendezVousEstimation(rendezVousEstimationId: UUID)
 
     suspend fun findRendezVousEstimations(): List<RendezVousEstimation>
+
+    suspend fun findRendezVousEstimation(id: UUID): RendezVousEstimation?
 }

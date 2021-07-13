@@ -44,12 +44,13 @@ class LocalDBRendezVousEstimationRepository @Inject constructor(
             )
         }
 
-    override suspend fun endRendezVousEstimation(rendezVousEstimationId: UUID) {
-        calendarEstimationDao.cancelRendezVousEstimation(
-            rendezVousEstimationId,
-            LocalDateTime.now().atZone(ZoneId.of("Europe/Paris")).toEpochSecond()
-        )
-    }
+    override suspend fun endRendezVousEstimation(rendezVousEstimationId: UUID) =
+        withContext(coroutineContextProvider.iO) {
+            calendarEstimationDao.cancelRendezVousEstimation(
+                rendezVousEstimationId,
+                LocalDateTime.now().atZone(ZoneId.of("Europe/Paris")).toEpochSecond()
+            )
+        }
 
     override suspend fun findRendezVousEstimations(): List<RendezVousEstimation> =
         withContext(coroutineContextProvider.iO) {
@@ -72,5 +73,28 @@ class LocalDBRendezVousEstimationRepository @Inject constructor(
                         )
                     )
                 }
+        }
+
+    override suspend fun findRendezVousEstimation(id: UUID): RendezVousEstimation? =
+        withContext(coroutineContextProvider.iO) {
+            calendarEstimationWithProprietaireDao.findRendezvousEstimation(id)?.run {
+                val rendezVousDate = LocalDateTime.ofInstant(
+                    Instant.ofEpochSecond(calendarEstimation.rendezVousDate),
+                    ZoneId.of("Europe/Paris")
+                )
+
+                RendezVousEstimation(
+                    calendarEstimation.id,
+                    rendezVousDate,
+                    calendarEstimation.addresse,
+                    Contact(
+                        ContactOrigin.INOPINE,
+                        proprietaire.fullname,
+                        proprietaire.phoneNumber,
+                        proprietaire.email,
+                        proprietaire.commentaire
+                    )
+                )
+            }
         }
 }

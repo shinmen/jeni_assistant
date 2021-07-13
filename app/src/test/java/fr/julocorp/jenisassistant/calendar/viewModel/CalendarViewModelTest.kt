@@ -121,9 +121,7 @@ class CalendarViewModelTest {
             `when`(it.handle()).thenReturn(Success(listOf()))
         }
         val rappelId = UUID.randomUUID()
-        val useCaseEndRappel = mock(EndRappel::class.java).also {
-            `when`(it.handle(rappelId)).thenThrow(RuntimeException())
-        }
+        val useCaseEndRappel = mock(EndRappel::class.java)
 
         val viewModel = CalendarViewModel(
             useCaseListEvents,

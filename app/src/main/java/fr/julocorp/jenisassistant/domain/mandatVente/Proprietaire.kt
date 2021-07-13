@@ -4,8 +4,7 @@ import java.util.*
 
 data class Proprietaire(
     val id: UUID,
-    val lastname: String,
-    val firstname: String,
+    val fullname: String,
     val telephones: List<String>,
     val email: String?,
     val comment: String?

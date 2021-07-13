@@ -54,7 +54,7 @@ class ListEventsUseCaseTest {
             RendezVousEstimation(UUID.randomUUID(), now, address, proprietaire),
         ))
 
-        val useCase = ListEvents(rappelRepo, rdvEstimationRepo, TestCoroutineContextProvider())
+        val useCase = ListEvents(rappelRepo, rdvEstimationRepo)
         val result = useCase.handle()
 
         assertThat(result).isInstanceOf(Success::class.java)
@@ -78,7 +78,6 @@ class ListEventsUseCaseTest {
         val useCase = ListEvents(
             rappelRepository,
             rendezVousEstimationRepository,
-            TestCoroutineContextProvider()
         )
 
         assertThat(useCase.handle()).isInstanceOf(Failure::class.java)

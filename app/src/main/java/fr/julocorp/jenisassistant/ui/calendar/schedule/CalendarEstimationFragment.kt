@@ -73,8 +73,6 @@ class CalendarEstimationFragment : Fragment() {
             }
         }
 
-
-
         dateTimePickerViewModel.dateTimePicked.observe(viewLifecycleOwner) {
             view.findViewById<TextView>(R.id.datetime_picker).text =
                 it.format(DateTimeFormatter.ofPattern("EE d MMM y à H:mm"))
