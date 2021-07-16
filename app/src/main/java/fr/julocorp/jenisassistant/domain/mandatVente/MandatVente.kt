@@ -3,18 +3,17 @@ package fr.julocorp.jenisassistant.domain.mandatVente
 import fr.julocorp.jenisassistant.domain.common.BusinessCalendar
 import fr.julocorp.jenisassistant.domain.common.Rappel
 import java.time.LocalDateTime
-import java.time.LocalTime
 import java.util.*
 
 class MandatVente(
     val id: UUID,
     private val proprietaire: Proprietaire,
-    private val bien: Bien
+    private val propriete: Propriete
 ) {
     fun requestEstimation(calendar: BusinessCalendar, disponibilites: LocalDateTime?) {
         if (disponibilites == null) {
             val scheduleCallTime = scheduleCallDisponibilites()
-            calendar.addRappel(Rappel(UUID.randomUUID(), scheduleCallTime, bien.toString()))
+            calendar.addRappel(Rappel(UUID.randomUUID(), scheduleCallTime, propriete.toString()))
         } else {
             //calendar.addRendezVousEstimation(scheduleRendezVousEstimation(disponibilites))
         }

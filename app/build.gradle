@@ -75,6 +75,9 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_moshi_converter_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$http_logging_interceptor"
 
+    implementation "com.mapbox.mapboxsdk:mapbox-android-sdk:$mapbox_version"
+    implementation "com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v9:$mapbox_annotation_version"
+
     // Dagger
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"

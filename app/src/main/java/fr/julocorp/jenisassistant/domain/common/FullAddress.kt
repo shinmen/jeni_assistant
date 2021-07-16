@@ -8,10 +8,6 @@ data class FullAddress(
     val city: String,
     val geolocation: Geolocation
 ) {
-    init {
-
-    }
-
     override fun toString(): String = "$numberStreet $zipCode ${city}"
         .trim { it.toString().isBlank() }
         .lowercase()

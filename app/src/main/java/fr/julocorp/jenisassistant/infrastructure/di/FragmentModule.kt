@@ -7,7 +7,7 @@ import fr.julocorp.jenisassistant.ui.calendar.schedule.CalendarEstimationFragmen
 import fr.julocorp.jenisassistant.ui.calendar.schedule.RappelFragment
 import fr.julocorp.jenisassistant.ui.common.datetimePicker.DatePickerDialogFragment
 import fr.julocorp.jenisassistant.ui.common.datetimePicker.TimePickerDialogFragment
-import fr.julocorp.jenisassistant.ui.mandatVente.EstimationFragment
+import fr.julocorp.jenisassistant.ui.mandatVente.estimation.EstimationFragment
 
 @Module
 abstract class FragmentModule {

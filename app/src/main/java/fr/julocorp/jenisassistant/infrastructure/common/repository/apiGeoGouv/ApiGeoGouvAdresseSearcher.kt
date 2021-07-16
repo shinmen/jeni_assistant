@@ -20,8 +20,8 @@ class ApiGeoGouvAdresseSearcher @Inject constructor(
                     feature.properties.zipCode,
                     feature.properties.city,
                     Geolocation(
-                        feature.geometry.coordinates.first(),
-                        feature.geometry.coordinates.last()
+                        longitude = feature.geometry.coordinates.first(),
+                        latitude = feature.geometry.coordinates.last()
                     )
                 )
             }

@@ -41,7 +41,7 @@
         android:layout_gravity="end|bottom"
         android:layout_marginBottom="@dimen/just_above_navbar"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:contentDescription="@string/add_calendar_action"
+        android:contentDescription="@string/add_action"
         android:src="@drawable/ic_schedule" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

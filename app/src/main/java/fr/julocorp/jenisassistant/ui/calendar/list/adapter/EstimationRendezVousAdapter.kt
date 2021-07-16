@@ -10,6 +10,7 @@ import fr.julocorp.jenisassistant.R
 import fr.julocorp.jenisassistant.infrastructure.inflate
 import fr.julocorp.jenisassistant.ui.calendar.list.CalendarRow
 import fr.julocorp.jenisassistant.ui.calendar.list.EstimationRow
+import fr.julocorp.jenisassistant.ui.mandatVente.estimation.EstimationFragment
 import java.time.format.DateTimeFormatter
 import java.util.*
 
@@ -19,7 +20,7 @@ class EstimationRendezVousAdapter(
         position: Int,
         id: UUID,
     ) -> Unit,
-    private val rendezVousEstimationStartListener: (rendezVousEstimationId: UUID) -> Unit,
+    private val rendezVousEstimationStartListener: (rendezVousEstimationId: UUID, view: View) -> Unit,
     private val addressToMapListener: (address: String) -> Unit
 ) : RendezVousListAdapter.RendezVousAdapter {
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder =
@@ -40,15 +41,19 @@ class EstimationRendezVousAdapter(
             textEstimationEmail.text = row.contactEmail
             textEstimationComment.text = row.contactComment
             textRendezVousTime.text = row.date.format(DateTimeFormatter.ofPattern("HH:mm"))
-            textEstimationAddress.text = row.address
 
             deleteRendezVous.setOnClickListener {
                 it.visibility = View.GONE
                 rendezvousEstimationDeleteListener(adapter, position, row.id)
             }
-
-            cardProprietaire.setOnClickListener {
-                rendezVousEstimationStartListener(row.id)
+            with(cardProprietaire) {
+                setOnClickListener {
+                    rendezVousEstimationStartListener(row.id, textEstimationAddress)
+                }
+            }
+            with(textEstimationAddress) {
+                transitionName = EstimationFragment.MAP_SHARED_ELEMENT_TRANSITION_NAME
+                text = row.address
             }
             textEstimationAddressIcon.setOnClickListener {
                 addressToMapListener(row.address)

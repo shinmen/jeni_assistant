@@ -9,7 +9,7 @@ import fr.julocorp.jenisassistant.ui.calendar.list.CalendarViewModel
 import fr.julocorp.jenisassistant.ui.calendar.schedule.CalendarEstimationViewModel
 import fr.julocorp.jenisassistant.ui.calendar.schedule.RappelViewModel
 import fr.julocorp.jenisassistant.ui.common.datetimePicker.DateTimePickerViewModel
-import fr.julocorp.jenisassistant.ui.mandatVente.EstimationViewModel
+import fr.julocorp.jenisassistant.ui.mandatVente.estimation.EstimationViewModel
 import javax.inject.Singleton
 
 @Module

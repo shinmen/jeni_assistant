@@ -2,23 +2,27 @@ package fr.julocorp.jenisassistant.ui.calendar.list
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager.MATCH_DEFAULT_ONLY
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.AutoTransition
+import androidx.transition.Explode
+import androidx.transition.Fade
+import androidx.transition.Slide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import fr.julocorp.jenisassistant.R
 import fr.julocorp.jenisassistant.domain.common.Failure
-import fr.julocorp.jenisassistant.domain.common.FullAddress
 import fr.julocorp.jenisassistant.domain.common.Loading
 import fr.julocorp.jenisassistant.domain.common.Success
 import fr.julocorp.jenisassistant.infrastructure.di.ViewModelFactory
@@ -28,7 +32,7 @@ import fr.julocorp.jenisassistant.ui.calendar.OnCalendarActionListener
 import fr.julocorp.jenisassistant.ui.calendar.list.adapter.*
 import fr.julocorp.jenisassistant.ui.calendar.schedule.CalendarEstimationFragment
 import fr.julocorp.jenisassistant.ui.calendar.schedule.RappelFragment
-import fr.julocorp.jenisassistant.ui.mandatVente.EstimationFragment
+import fr.julocorp.jenisassistant.ui.mandatVente.estimation.EstimationFragment
 import java.util.*
 import javax.inject.Inject
 
@@ -46,19 +50,21 @@ class CalendarFragment : Fragment(), OnCalendarActionListener {
         calendarViewModel.markRendezvousEstimationAsDone(id)
     }
 
-    private val rendezVousEstimationStartListener = { rendezVousEstimationId: UUID ->
+    private val rendezVousEstimationStartListener = { rendezVousEstimationId: UUID, view: View ->
         val fragment = EstimationFragment.newInstance(rendezVousEstimationId)
         parentFragmentManager.beginTransaction()
             .replace(R.id.content, fragment, fragment.tag)
+            .addSharedElement(view, view.transitionName)
             .addToBackStack(null)
             .commit()
         Unit
     }
 
     private val addressToMapListener = { address: String ->
-        val i = Intent(Intent.ACTION_VIEW, Uri.parse("google.navigation:?q=$address"))
-        val packageManager = requireActivity().packageManager
-        packageManager.resolveActivity(i, 0)?.run { startActivity(i) }
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("google.navigation:?q=$address"))
+        requireActivity()
+            .packageManager
+            .resolveActivity(intent, MATCH_DEFAULT_ONLY)?.run { startActivity(intent) }
         Unit
     }
 
@@ -148,6 +154,10 @@ class CalendarFragment : Fragment(), OnCalendarActionListener {
         const val TAG = "calendarFragment"
 
         @JvmStatic
-        fun newInstance() = CalendarFragment()
+        fun newInstance() = CalendarFragment().apply {
+            enterTransition = Slide()
+            exitTransition = Slide()
+            reenterTransition = Slide()
+        }
     }
 }

@@ -1,7 +1,7 @@
 package fr.julocorp.jenisassistant.domain.mandatVente
 
 class Estimation {
-    fun estimer(bien: Bien)  {
+    fun estimer(propriete: Propriete)  {
 
     }
 

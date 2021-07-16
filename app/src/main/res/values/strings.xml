@@ -4,7 +4,7 @@
     <string name="title_calendar">Emploi du temps</string>
     <string name="title_boitage">Boîtage</string>
     <string name="title_contact_telephone">Appels</string>
-    <string name="add_calendar_action">Ajouter</string>
+    <string name="add_action">Ajouter</string>
     <string name="which_calendar_event">Quel type d\'évenement?</string>
 
     <string name="add_estimation">Programmer une estimation</string>
