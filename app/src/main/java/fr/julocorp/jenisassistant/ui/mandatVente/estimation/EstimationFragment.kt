@@ -74,27 +74,8 @@ class EstimationFragment : Fragment() {
             val mergeAdapter = ConcatAdapter(contactAdapter)
             layoutManager = GridLayoutManager(activity, ESTIMATION_LIST_SPAN_COUNT)
             adapter = mergeAdapter
-            viewModel.rendezVousEstimationWithProprietaire.observe(viewLifecycleOwner) { state ->
-                when (state) {
-                    is Loading -> loaderView.visibility = View.VISIBLE
-                    is Success -> {
-                        contactAdapter.addContact(state.result.prospect)
-                        val rendezVousLocation = state.result.addresseBien.geolocation
-                        loaderView.visibility = View.GONE
-                        mapView.getMapAsync { mapboxMap ->
-                            mapboxMap.setStyle(
-                                Style.MAPBOX_STREETS
-                            ) { style ->
-                                moveCameraToLocation(mapboxMap, rendezVousLocation)
-                                createMarker(mapboxMap, style, rendezVousLocation)
-                            }
-                        }
-                    }
-                    is Failure -> {
-                        loaderView.visibility = View.GONE
-                    }
-                }
-            }
+            observeRendezVousEstimation(loaderView, contactAdapter)
+            observePropriete(loaderView)
         }
     }
 
@@ -131,6 +112,44 @@ class EstimationFragment : Fragment() {
             .withIconSize(MARKER_ICON_SIZE)
 
         symbolManager.create(symbolOptions)
+    }
+
+    private fun observeRendezVousEstimation(loaderView: ProgressBar, contactAdapter: ContactAdapter) {
+        viewModel.rendezVousEstimationWithProprietaire.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is Loading -> loaderView.visibility = View.VISIBLE
+                is Success -> {
+                    contactAdapter.addContact(state.result.prospect)
+                    val rendezVousLocation = state.result.addresseBien.geolocation
+                    loaderView.visibility = View.GONE
+                    mapView.getMapAsync { mapboxMap ->
+                        mapboxMap.setStyle(
+                            Style.MAPBOX_STREETS
+                        ) { style ->
+                            moveCameraToLocation(mapboxMap, rendezVousLocation)
+                            createMarker(mapboxMap, style, rendezVousLocation)
+                        }
+                    }
+                }
+                is Failure -> {
+                    loaderView.visibility = View.GONE
+                }
+            }
+        }
+    }
+
+    private fun observePropriete(loaderView: ProgressBar) {
+        viewModel.propriete.observe(viewLifecycleOwner) { state ->
+            when(state) {
+                is Loading -> loaderView.visibility = View.VISIBLE
+                is Success -> {
+                    loaderView.visibility = View.GONE
+                }
+                is Failure -> {
+                    loaderView.visibility = View.GONE
+                }
+            }
+        }
     }
 
     override fun onStart() {
@@ -171,7 +190,7 @@ class EstimationFragment : Fragment() {
     companion object {
         private const val RENDEZ_VOUS_ESTIMATION_ID = "rendezVousEstimationId"
         private const val ESTIMATION_LIST_SPAN_COUNT = 2
-        private const val MAP_TILT = 30.0
+        private const val MAP_TILT = 10.0
         private const val MAP_ZOOM = 14.0
         private const val MARKER_ICON_SPRITE = "lodging-15"
         private const val MARKER_ICON_SIZE = 1.5f

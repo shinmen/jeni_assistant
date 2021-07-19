@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "6a5c4750877cf00a1d378d8f9415a060",
+    "identityHash": "7cc47ae80ccc6bdc0eb29eafdaf25063",
     "entities": [
       {
         "tableName": "rappels",
@@ -53,7 +53,7 @@
       },
       {
         "tableName": "calendar_estimations",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `estimation_date` INTEGER NOT NULL, `proprietaire_id` TEXT NOT NULL, `addresse` TEXT NOT NULL, `closed_at` INTEGER, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `estimation_date` INTEGER NOT NULL, `proprietaire_id` TEXT NOT NULL, `propriete_id` TEXT NOT NULL, `addresse` TEXT NOT NULL, `closed_at` INTEGER, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -70,6 +70,12 @@
           {
             "fieldPath": "proprietaireId",
             "columnName": "proprietaire_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "proprieteId",
+            "columnName": "propriete_id",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -155,12 +161,132 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "proprietes",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `addresse` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "addresse",
+            "columnName": "addresse",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "caracteristiques",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `propriete_id` TEXT NOT NULL, `label` TEXT NOT NULL, `valeur` TEXT NOT NULL, `amenagement_label` TEXT NOT NULL, `amenagement_type` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "proprieteId",
+            "columnName": "propriete_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "label",
+            "columnName": "label",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "valeur",
+            "columnName": "valeur",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "amenagement.amenagementLabel",
+            "columnName": "amenagement_label",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "amenagement.amenagementType",
+            "columnName": "amenagement_type",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_caracteristiques_propriete_id",
+            "unique": false,
+            "columnNames": [
+              "propriete_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_caracteristiques_propriete_id` ON `${TABLE_NAME}` (`propriete_id`)"
+          },
+          {
+            "name": "index_caracteristiques_amenagement_label",
+            "unique": false,
+            "columnNames": [
+              "amenagement_label"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_caracteristiques_amenagement_label` ON `${TABLE_NAME}` (`amenagement_label`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "proprietes_proprietaires",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`propriete_id` TEXT NOT NULL, `proprietaire_id` TEXT NOT NULL, PRIMARY KEY(`propriete_id`, `proprietaire_id`))",
+        "fields": [
+          {
+            "fieldPath": "proprieteId",
+            "columnName": "propriete_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "proprietaireId",
+            "columnName": "proprietaire_id",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "propriete_id",
+            "proprietaire_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6a5c4750877cf00a1d378d8f9415a060')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7cc47ae80ccc6bdc0eb29eafdaf25063')"
     ]
   }
 }

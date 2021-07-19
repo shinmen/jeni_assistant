@@ -11,8 +11,10 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.supervisorScope
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
 import javax.inject.Inject
+import kotlin.Comparator
 
 class ListEvents @Inject constructor(
     private val rappelRepository: RappelRepository,

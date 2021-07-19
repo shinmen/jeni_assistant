@@ -1,4 +1,4 @@
-package fr.julocorp.jenisassistant.infrastructure.calendar.database
+package fr.julocorp.jenisassistant.infrastructure.database
 
 import androidx.room.TypeConverter
 import com.squareup.moshi.Moshi

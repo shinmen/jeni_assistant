@@ -1,5 +1,9 @@
 package fr.julocorp.jenisassistant.domain.mandatVente
 
-import java.util.*
+import fr.julocorp.jenisassistant.domain.mandatVente.caracteristique.Caracteristique
 
-data class Amenagement(val id: UUID, val label: String, val caracteristiques: List<*>)
+data class Amenagement(
+    val label: String,
+    val amenagementType: AmenagementType,
+    val caracteristiques: List<Caracteristique<*>>
+)

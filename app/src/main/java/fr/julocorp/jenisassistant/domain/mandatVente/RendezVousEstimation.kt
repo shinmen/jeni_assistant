@@ -9,5 +9,6 @@ data class RendezVousEstimation(
     val id: UUID,
     val rendezVousDate: LocalDateTime,
     val addresseBien: FullAddress,
-    val prospect: Contact
+    val prospect: Contact,
+    val proprieteId: UUID
 )

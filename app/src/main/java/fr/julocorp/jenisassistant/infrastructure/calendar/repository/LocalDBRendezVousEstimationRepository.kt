@@ -8,7 +8,8 @@ import fr.julocorp.jenisassistant.infrastructure.CoroutineContextProvider
 import fr.julocorp.jenisassistant.infrastructure.calendar.database.CalendarEstimationDao
 import fr.julocorp.jenisassistant.infrastructure.calendar.database.CalendarEstimationEntity
 import fr.julocorp.jenisassistant.infrastructure.calendar.database.CalendarEstimationWithProprietaireDao
-import fr.julocorp.jenisassistant.infrastructure.calendar.database.ProprietaireEntity
+import fr.julocorp.jenisassistant.infrastructure.mandatVente.database.ProprietaireEntity
+import fr.julocorp.jenisassistant.infrastructure.mandatVente.database.ProprieteEntity
 import kotlinx.coroutines.withContext
 import java.time.Instant
 import java.time.LocalDateTime
@@ -30,17 +31,24 @@ class LocalDBRendezVousEstimationRepository @Inject constructor(
                 rendezVousEstimation.prospect.email,
                 rendezVousEstimation.prospect.commentaire
             )
+            val propriete = ProprieteEntity(
+                rendezVousEstimation.proprieteId,
+                rendezVousEstimation.addresseBien,
+            )
+
             val calendarEstimation = CalendarEstimationEntity(
                 rendezVousEstimation.id,
                 rendezVousEstimation.rendezVousDate.atZone(ZoneId.of("Europe/Paris"))
                     .toEpochSecond(),
                 proprietaire.id,
+                propriete.id,
                 rendezVousEstimation.addresseBien,
             )
 
             calendarEstimationWithProprietaireDao.insertCalendarEstimationWithProprietaire(
                 calendarEstimation,
-                proprietaire
+                proprietaire,
+                propriete
             )
         }
 
@@ -70,7 +78,8 @@ class LocalDBRendezVousEstimationRepository @Inject constructor(
                             calendarEstimationEntity.proprietaire.phoneNumber,
                             calendarEstimationEntity.proprietaire.email,
                             calendarEstimationEntity.proprietaire.commentaire,
-                        )
+                        ),
+                        calendarEstimationEntity.calendarEstimation.proprieteId
                     )
                 }
         }
@@ -93,7 +102,8 @@ class LocalDBRendezVousEstimationRepository @Inject constructor(
                         proprietaire.phoneNumber,
                         proprietaire.email,
                         proprietaire.commentaire
-                    )
+                    ),
+                    calendarEstimation.proprieteId
                 )
             }
         }

@@ -31,4 +31,9 @@ open class LocalDbModule {
     @Provides
     open fun providesCalendarEstimationWithProprietaireDao(database: JenisAssistantDatabase) =
         database.calendarEstimationWithProprietaireDao()
+
+    @Singleton
+    @Provides
+    open fun providesProprieteDao(database: JenisAssistantDatabase) =
+        database.proprieteDao()
 }

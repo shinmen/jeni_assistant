@@ -1,0 +1,26 @@
+package fr.julocorp.jenisassistant.domain.mandatVente
+
+enum class AmenagementType {
+    AUTRE,
+    BUANDERIE,
+    CAVE,
+    CELLIER,
+    CHAMBRE,
+    COULOIR,
+    CUISINE,
+    DEPENDANCE,
+    GARAGE,
+    GRENIER,
+    JARDIN,
+    MEZZANINE,
+    PARKING,
+    PISCINE,
+    PROPRIETE,
+    SEJOUR,
+    SOUS_SOL,
+    TERRASSE,
+    SALLE_D_EAU,
+    SALLE_DE_BAINS,
+    VERANDA,
+    WC,
+}

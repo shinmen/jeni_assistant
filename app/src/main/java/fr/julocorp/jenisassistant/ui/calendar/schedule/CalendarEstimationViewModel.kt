@@ -55,7 +55,7 @@ class CalendarEstimationViewModel @Inject constructor(
                 try {
                     validateRequiredInput(input)
                     val rendezVousEstimation = RendezVousEstimation(
-                        UUID.randomUUID(),
+                        id = UUID.randomUUID(),
                         input.rendezVousDate!!,
                         input.address!!,
                         Contact(
@@ -64,7 +64,8 @@ class CalendarEstimationViewModel @Inject constructor(
                             input.phoneNumber,
                             input.email,
                             input.comment,
-                        )
+                        ),
+                        proprieteId = UUID.randomUUID()
                     )
                     val result = scheduleRendezVousEstimation.handle(rendezVousEstimation)
                     mutableRendezVousEstimationSave.postValue(result)

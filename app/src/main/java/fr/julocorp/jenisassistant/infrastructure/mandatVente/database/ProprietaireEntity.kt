@@ -1,4 +1,4 @@
-package fr.julocorp.jenisassistant.infrastructure.calendar.database
+package fr.julocorp.jenisassistant.infrastructure.mandatVente.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
