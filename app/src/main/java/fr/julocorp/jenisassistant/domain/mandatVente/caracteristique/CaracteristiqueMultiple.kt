@@ -1,9 +1,15 @@
 package fr.julocorp.jenisassistant.domain.mandatVente.caracteristique
 
+import fr.julocorp.jenisassistant.infrastructure.castGeneric
 import java.util.*
 
 data class CaracteristiqueMultiple(
-    val id: UUID,
-    val label: String,
+    override val id: UUID,
+    override val label: String,
     override val valeur: List<String>
-) : Caracteristique<List<String>>
+) : Caracteristique<List<String>> {
+    override fun <U> valeurIn(listToSearchIn: List<U>): Boolean =
+        castGeneric<List<String>>(listToSearchIn).containsAll(valeur)
+
+    override fun <U> valeurEquals(equalsTo: U): Boolean = valeur == equalsTo
+}

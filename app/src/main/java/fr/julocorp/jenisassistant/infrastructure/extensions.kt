@@ -33,27 +33,4 @@ fun Snackbar.success(context: Context): Snackbar = this.apply {
     show()
 }
 
-//fun <T> Flow<T>.debounce(waitMillis: Long) = flow<T> {
-//    coroutineScope {
-//        val context = coroutineContext
-//        var delayPost: Deferred<Unit>? = null
-//        delayPost?.cancel()
-//        delayPost = async(Dispatchers.Default) {
-//            delay(waitMillis)
-//            withContext(context) {
-//                emit()
-//            }
-//        }
-//
-//
-//        collect {
-//            delayPost?.cancel()
-//            delayPost = async(Dispatchers.Default) {
-//                delay(waitMillis)
-//                withContext(context) {
-//                    emit(it)
-//                }
-//            }
-//        }
-//    }
-//}
+inline fun <reified U> castGeneric(parameter: Any): U = parameter as U

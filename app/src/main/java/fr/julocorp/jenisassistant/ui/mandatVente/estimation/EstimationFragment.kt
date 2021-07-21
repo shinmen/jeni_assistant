@@ -70,12 +70,13 @@ class EstimationFragment : Fragment() {
         mapView.onCreate(savedInstanceState)
 
         with(view.findViewById<RecyclerView>(R.id.estimation_list)) {
-            val contactAdapter = ContactAdapter(mutableListOf())
-            val mergeAdapter = ConcatAdapter(contactAdapter)
+            val contactAdapter = ContactAdapter(mutableListOf()).apply { setHasFixedSize(true) }
+            val proprieteAdapter = ProprieteAdapter().apply { setHasFixedSize(true) }
+            val mergeAdapter = ConcatAdapter(contactAdapter, proprieteAdapter)
             layoutManager = GridLayoutManager(activity, ESTIMATION_LIST_SPAN_COUNT)
             adapter = mergeAdapter
             observeRendezVousEstimation(loaderView, contactAdapter)
-            observePropriete(loaderView)
+            observePropriete(loaderView, proprieteAdapter)
         }
     }
 
@@ -138,11 +139,12 @@ class EstimationFragment : Fragment() {
         }
     }
 
-    private fun observePropriete(loaderView: ProgressBar) {
+    private fun observePropriete(loaderView: ProgressBar, proprieteAdapter: ProprieteAdapter) {
         viewModel.propriete.observe(viewLifecycleOwner) { state ->
             when(state) {
                 is Loading -> loaderView.visibility = View.VISIBLE
                 is Success -> {
+                    proprieteAdapter.setPropriete(state.result)
                     loaderView.visibility = View.GONE
                 }
                 is Failure -> {

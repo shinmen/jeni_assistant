@@ -50,11 +50,11 @@ class ListEventsUseCaseTest {
         ))
 
         `when`(rdvEstimationRepo.findRendezVousEstimations()).thenReturn(listOf(
-            RendezVousEstimation(UUID.randomUUID(), now.plusDays(1), address, proprietaire),
-            RendezVousEstimation(UUID.randomUUID(), now, address, proprietaire),
+            RendezVousEstimation(UUID.randomUUID(), now.plusDays(1), address, proprietaire, UUID.randomUUID()),
+            RendezVousEstimation(UUID.randomUUID(), now, address, proprietaire, UUID.randomUUID()),
         ))
 
-        val useCase = ListEvents(rappelRepo, rdvEstimationRepo)
+        val useCase = ListEvents(rappelRepo, rdvEstimationRepo, TestCoroutineContextProvider())
         val result = useCase.handle()
 
         assertThat(result).isInstanceOf(Success::class.java)
@@ -78,6 +78,7 @@ class ListEventsUseCaseTest {
         val useCase = ListEvents(
             rappelRepository,
             rendezVousEstimationRepository,
+            TestCoroutineContextProvider()
         )
 
         assertThat(useCase.handle()).isInstanceOf(Failure::class.java)

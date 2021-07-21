@@ -33,6 +33,5 @@ class ContactAdapter(private val contacts: MutableList<Contact>): RecyclerView.A
         val textEstimationPhone: TextView = item.findViewById(R.id.text_contact_phone)
         val textEstimationEmail: TextView = item.findViewById(R.id.text_contact_email)
         val textEstimationComment: TextView = item.findViewById(R.id.text_contact_comment)
-        val cardProprietaire: CardView = item.findViewById(R.id.card_contact)
     }
 }

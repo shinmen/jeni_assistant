@@ -41,7 +41,8 @@ class EndRendezVousEstimationUseCaseTest {
             UUID.randomUUID(),
             LocalDateTime.now(),
             address,
-            proprietaire
+            proprietaire,
+            UUID.randomUUID()
         )
 
         assertThat(useCase.handle(rendezvousEstimation.id)).isInstanceOf(Success::class.java)

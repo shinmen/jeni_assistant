@@ -6,10 +6,9 @@ import fr.julocorp.jenisassistant.domain.common.Failure
 import fr.julocorp.jenisassistant.domain.common.Rappel
 import fr.julocorp.jenisassistant.domain.common.Success
 import fr.julocorp.jenisassistant.domain.mandatVente.RendezVousEstimation
+import fr.julocorp.jenisassistant.infrastructure.CoroutineContextProvider
 import fr.julocorp.jenisassistant.ui.calendar.list.*
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.async
-import kotlinx.coroutines.supervisorScope
+import kotlinx.coroutines.*
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
@@ -18,7 +17,8 @@ import kotlin.Comparator
 
 class ListEvents @Inject constructor(
     private val rappelRepository: RappelRepository,
-    private val rendezVousEstimationRepository: RendezVousEstimationRepository
+    private val rendezVousEstimationRepository: RendezVousEstimationRepository,
+    private val coroutineContextProvider: CoroutineContextProvider
 ) {
     suspend fun handle() =
         try {
@@ -90,17 +90,26 @@ class ListEvents @Inject constructor(
         }
     }
 
-    private fun mapToListWithDaysAndSeparator(
+    private suspend fun mapToListWithDaysAndSeparator(
         calendarRowsGroupedByDate: TreeMap<LocalDate, MutableList<CalendarRow>>
-    ): List<CalendarRow> = calendarRowsGroupedByDate
-        .map { rowsGroupByDate ->
-            val isToday = LocalDate.now().equals(rowsGroupByDate.key)
-            if (rowsGroupByDate.value.isNotEmpty() || isToday) {
-                rowsGroupByDate.value.add(0, DayRow(rowsGroupByDate.key, isToday))
-                rowsGroupByDate.value.add(SeparatorRow)
-            }
+    ): List<CalendarRow> = withContext(coroutineContextProvider.default) {
+        calendarRowsGroupedByDate
+            .map { rowsGroupByDate ->
+                val sortedRowsGroupByDate = rowsGroupByDate.value
+                    .filterIsInstance(DateTimeOfRow::class.java)
+                    .sortedBy { it.getDateTime() }
+                    .filterIsInstance(CalendarRow::class.java)
+                    .toMutableList()
 
-            rowsGroupByDate
-        }
-        .flatMap { rowsGroupByDate -> rowsGroupByDate.value.toList() }
+                val isToday = LocalDate.now().equals(rowsGroupByDate.key)
+                if (sortedRowsGroupByDate.isNotEmpty() || isToday) {
+                    sortedRowsGroupByDate.add(0, DayRow(rowsGroupByDate.key, isToday))
+                    sortedRowsGroupByDate.add(SeparatorRow)
+                }
+
+                sortedRowsGroupByDate
+            }
+            .flatMap { sortedRowsGroupByDate -> sortedRowsGroupByDate.toList() }
+            .dropLast(1)
+    }
 }

@@ -45,7 +45,8 @@ class ScheduleRendezVousEstimationUseCaseTest {
                 UUID.randomUUID(),
                 LocalDateTime.now(),
                 address,
-                proprietaire
+                proprietaire,
+                UUID.randomUUID(),
             )
 
             assertThat(useCase.handle(rendezvousEstimation)).isInstanceOf(Success::class.java)
@@ -58,7 +59,8 @@ class ScheduleRendezVousEstimationUseCaseTest {
             UUID.randomUUID(),
             LocalDateTime.now(),
             address,
-            proprietaire
+            proprietaire,
+            UUID.randomUUID(),
         )
         `when`(repo.scheduleRendezVousEstimation(rendezvousEstimation)).thenThrow(RuntimeException())
         val useCase = ScheduleRendezVousEstimation(repo)

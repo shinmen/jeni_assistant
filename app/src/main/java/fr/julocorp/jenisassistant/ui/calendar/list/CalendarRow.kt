@@ -5,30 +5,40 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
 
-sealed class CalendarRow: TypeIdentifier
+sealed class CalendarRow : TypeIdentifier
 
-data class DayRow(val day: LocalDate, val isToday: Boolean): CalendarRow() {
+data class DayRow(val day: LocalDate, val isToday: Boolean) : CalendarRow() {
     companion object {
         const val VIEW_TYPE = 1
     }
+
     override fun getViewType() = VIEW_TYPE
     override fun getId() = day.toString()
 }
 
-data class RappelRow(val id: UUID, val sujet: String, val date: LocalDateTime): CalendarRow() {
+data class RappelRow(val id: UUID, val sujet: String, val date: LocalDateTime) : CalendarRow(), DateTimeOfRow {
     companion object {
         const val VIEW_TYPE = 2
     }
+
     override fun getViewType() = VIEW_TYPE
     override fun getId() = id.toString()
+    override fun getDateTime() = date
 }
 
-data class VisiteRow(val id: UUID, val address: String, val contact: String, val date: LocalDateTime): CalendarRow() {
+data class VisiteRow(
+    val id: UUID,
+    val address: String,
+    val contact: String,
+    val date: LocalDateTime
+) : CalendarRow(), DateTimeOfRow {
     companion object {
         const val VIEW_TYPE = 3
     }
+
     override fun getViewType() = VIEW_TYPE
     override fun getId() = id.toString()
+    override fun getDateTime() = date
 }
 
 data class EstimationRow(
@@ -39,15 +49,17 @@ data class EstimationRow(
     val contactEmail: String?,
     val contactComment: String?,
     val date: LocalDateTime
-    ): CalendarRow() {
+) : CalendarRow(), DateTimeOfRow {
     companion object {
         const val VIEW_TYPE = 4
     }
+
     override fun getViewType() = VIEW_TYPE
     override fun getId() = id.toString()
+    override fun getDateTime() = date
 }
 
-object SeparatorRow: CalendarRow() {
+object SeparatorRow : CalendarRow() {
     const val VIEW_TYPE = 5
     override fun getViewType() = VIEW_TYPE
     override fun getId() = "separator"

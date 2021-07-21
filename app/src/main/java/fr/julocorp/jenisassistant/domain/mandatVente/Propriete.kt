@@ -9,4 +9,10 @@ data class Propriete(
     val adresse: FullAddress,
     val caracteristiques: List<Caracteristique<*>>,
     val amenagements: List<Amenagement>
-)
+) {
+    companion object {
+        const val CARACTERISTIQUE_PROPRIETE_NATURE_LABEL = "nature de la propriété"
+        const val CARACTERISTIQUE_PROPRIETE_SURFACE_INTERIEURE_LABEL = "surface intérieure"
+        const val CARACTERISTIQUE_PROPRIETE_SURFACE_EXTERIEURE_LABEL = "surface extérieure"
+    }
+}

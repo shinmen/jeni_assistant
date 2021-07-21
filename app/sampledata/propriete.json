@@ -1,0 +1,14 @@
+{
+  "comment": "Sample data propriete",
+  "data": [
+    {
+      "nature": "Maison"
+    },
+    {
+      "nature": "Appartement"
+    },
+    {
+      "nature": "Terrain"
+    }
+  ]
+}
