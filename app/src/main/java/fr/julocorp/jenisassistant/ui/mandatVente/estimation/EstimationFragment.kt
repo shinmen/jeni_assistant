@@ -1,7 +1,6 @@
 package fr.julocorp.jenisassistant.ui.mandatVente.estimation
 
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,9 +12,7 @@ import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.AutoTransition
-import androidx.transition.Fade
 import androidx.transition.Slide
-import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.camera.CameraPosition
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
@@ -31,17 +28,24 @@ import fr.julocorp.jenisassistant.domain.common.Failure
 import fr.julocorp.jenisassistant.domain.common.Geolocation
 import fr.julocorp.jenisassistant.domain.common.Loading
 import fr.julocorp.jenisassistant.domain.common.Success
+import fr.julocorp.jenisassistant.domain.mandatVente.Propriete
 import fr.julocorp.jenisassistant.infrastructure.di.ViewModelFactory
+import fr.julocorp.jenisassistant.ui.mandatVente.propriete.ProprieteFragment
 import java.util.*
 import javax.inject.Inject
 
 class EstimationFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-
     private lateinit var viewModel: EstimationViewModel
-
     private lateinit var mapView: MapView
+    private val fillProprieteListener = {
+            propriete: Propriete -> parentFragmentManager.beginTransaction()
+                    .replace(R.id.content, ProprieteFragment.newInstance(propriete.id), ProprieteFragment.TAG)
+                    .addToBackStack(null)
+                    .commit()
+            Unit
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +53,7 @@ class EstimationFragment : Fragment() {
     ): View? {
         Mapbox.getInstance(requireActivity(), getString(R.string.mapbox_access_token))
 
-        return inflater.inflate(R.layout.estimation_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_estimation, container, false)
     }
 
     override fun onAttach(context: Context) {
@@ -71,7 +75,7 @@ class EstimationFragment : Fragment() {
 
         with(view.findViewById<RecyclerView>(R.id.estimation_list)) {
             val contactAdapter = ContactAdapter(mutableListOf()).apply { setHasFixedSize(true) }
-            val proprieteAdapter = ProprieteAdapter().apply { setHasFixedSize(true) }
+            val proprieteAdapter = ProprieteAdapter(fillProprieteListener).apply { setHasFixedSize(true) }
             val mergeAdapter = ConcatAdapter(contactAdapter, proprieteAdapter)
             layoutManager = GridLayoutManager(activity, ESTIMATION_LIST_SPAN_COUNT)
             adapter = mergeAdapter

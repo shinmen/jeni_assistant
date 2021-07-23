@@ -2,13 +2,31 @@
   "comment": "Sample data propriete",
   "data": [
     {
-      "nature": "Maison"
-    },
-    {
-      "nature": "Appartement"
-    },
-    {
-      "nature": "Terrain"
+      "proprieteNature": [
+        {
+          "nature": "Maison"
+        },
+        {
+          "nature": "Appartement"
+        },
+        {
+          "nature": "Terrain"
+        }
+      ],
+      "caracteristiques": [
+        {
+          "label": "Surface intérieure",
+          "value": "120m²"
+        },
+        {
+          "label": "Etat Toiture",
+          "value": "Bon état"
+        },
+        {
+          "label": "Etage",
+          "value": "1er"
+        }
+      ]
     }
   ]
 }

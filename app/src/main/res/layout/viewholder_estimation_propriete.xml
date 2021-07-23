@@ -48,7 +48,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/icon_propriete_nature"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="@sample/propriete.json/data/nature" />
+                tools:text="@sample/propriete.json/data/proprieteNature/nature" />
 
             <TextView
                 android:id="@+id/text_propriete_addresse"

@@ -8,6 +8,7 @@ import fr.julocorp.jenisassistant.ui.calendar.schedule.RappelFragment
 import fr.julocorp.jenisassistant.ui.common.datetimePicker.DatePickerDialogFragment
 import fr.julocorp.jenisassistant.ui.common.datetimePicker.TimePickerDialogFragment
 import fr.julocorp.jenisassistant.ui.mandatVente.estimation.EstimationFragment
+import fr.julocorp.jenisassistant.ui.mandatVente.propriete.ProprieteFragment
 
 @Module
 abstract class FragmentModule {
@@ -29,4 +30,7 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun contributeEstimationFragment(): EstimationFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeProprieteFragment(): ProprieteFragment
 }

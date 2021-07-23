@@ -9,9 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.activity.OnBackPressedCallback
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.AutoTransition
@@ -25,6 +27,7 @@ import fr.julocorp.jenisassistant.R
 import fr.julocorp.jenisassistant.domain.common.Failure
 import fr.julocorp.jenisassistant.domain.common.Loading
 import fr.julocorp.jenisassistant.domain.common.Success
+import fr.julocorp.jenisassistant.infrastructure.CoroutineContextProvider
 import fr.julocorp.jenisassistant.infrastructure.di.ViewModelFactory
 import fr.julocorp.jenisassistant.infrastructure.error
 import fr.julocorp.jenisassistant.ui.calendar.CalendarActionFragment
@@ -33,12 +36,15 @@ import fr.julocorp.jenisassistant.ui.calendar.list.adapter.*
 import fr.julocorp.jenisassistant.ui.calendar.schedule.CalendarEstimationFragment
 import fr.julocorp.jenisassistant.ui.calendar.schedule.RappelFragment
 import fr.julocorp.jenisassistant.ui.mandatVente.estimation.EstimationFragment
+import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
 class CalendarFragment : Fragment(), OnCalendarActionListener {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
+    @Inject
+    lateinit var coroutineContextProvider: CoroutineContextProvider
     private lateinit var calendarViewModel: CalendarViewModel
     private val rappelDeleteListener = { adapter: RendezVousListAdapter, position: Int, id: UUID ->
         adapter.remove(position)
@@ -80,6 +86,11 @@ class CalendarFragment : Fragment(), OnCalendarActionListener {
     ): View? = inflater.inflate(R.layout.fragment_calendar, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        activity?.onBackPressedDispatcher?.addCallback(
+            viewLifecycleOwner,
+            object: OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {}
+            })
         calendarViewModel =
             ViewModelProvider(this, viewModelFactory).get(CalendarViewModel::class.java)
 
@@ -125,7 +136,9 @@ class CalendarFragment : Fragment(), OnCalendarActionListener {
                     is Success<List<CalendarRow>> -> {
                         loaderView.visibility = View.GONE
                         val rows = state.result
-                        rendezVousListAdapter.updateRows(rows)
+                        lifecycleScope.launch(coroutineContextProvider.main) {
+                            rendezVousListAdapter.updateRows(rows, coroutineContextProvider.default)
+                        }
                         val todayPosition = rows.indexOfFirst { it is DayRow && it.isToday }
                         (layoutManager as LinearLayoutManager).scrollToPosition(todayPosition)
                     }

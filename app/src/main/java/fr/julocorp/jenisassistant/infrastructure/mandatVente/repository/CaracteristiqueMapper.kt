@@ -10,8 +10,6 @@ import fr.julocorp.jenisassistant.infrastructure.mandatVente.database.Caracteris
 
 class CaracteristiqueMapper {
     private val listJsonAdapter by lazy {
-        val type = Types.newParameterizedType(List::class.java, String::class.java)
-        //Moshi.Builder().build().adapter<List<String>>(type)
         Moshi.Builder().build().adapter<List<String>>(List::class.java)
     }
 
@@ -20,22 +18,27 @@ class CaracteristiqueMapper {
             CaracteristiqueValueType.TEXT -> CaracteristiqueText(
                 caracteristique.id,
                 caracteristique.label,
-                caracteristique.valeur.value
+                caracteristique.valeur.value,
             )
             CaracteristiqueValueType.MULTIPLE -> CaracteristiqueMultiple(
                 caracteristique.id,
                 caracteristique.label,
-                listJsonAdapter.fromJson(caracteristique.valeur.value) ?: listOf()
+                listJsonAdapter.fromJson(caracteristique.valeur.value) ?: listOf(),
             )
             CaracteristiqueValueType.INT -> CaracteristiqueInt(
                 caracteristique.id,
                 caracteristique.label,
-                caracteristique.valeur.value.toInt()
+                caracteristique.valeur.value.toInt(),
             )
             CaracteristiqueValueType.FLOAT -> CaracteristiqueFloat(
                 caracteristique.id,
                 caracteristique.label,
-                caracteristique.valeur.value.toFloat()
+                caracteristique.valeur.value.toFloat(),
+            )
+            CaracteristiqueValueType.BOOL -> CaracteristiqueBool(
+                caracteristique.id,
+                caracteristique.label,
+                caracteristique.valeur.value.toBoolean(),
             )
         }
 

@@ -17,6 +17,7 @@ open class LocalDbModule {
         JenisAssistantDatabase::class.java,
         JenisAssistantDatabase.DATABASE_NAME
     )
+        .createFromAsset("database/${JenisAssistantDatabase.DATABASE_NAME}")
         .build()
 
     @Singleton

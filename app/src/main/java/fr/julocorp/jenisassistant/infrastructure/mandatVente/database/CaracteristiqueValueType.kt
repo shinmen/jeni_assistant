@@ -5,4 +5,5 @@ enum class CaracteristiqueValueType {
     MULTIPLE,
     INT,
     FLOAT,
+    BOOL,
 }

@@ -10,6 +10,7 @@ import fr.julocorp.jenisassistant.ui.calendar.schedule.CalendarEstimationViewMod
 import fr.julocorp.jenisassistant.ui.calendar.schedule.RappelViewModel
 import fr.julocorp.jenisassistant.ui.common.datetimePicker.DateTimePickerViewModel
 import fr.julocorp.jenisassistant.ui.mandatVente.estimation.EstimationViewModel
+import fr.julocorp.jenisassistant.ui.mandatVente.propriete.ProprieteViewModel
 import javax.inject.Singleton
 
 @Module
@@ -43,4 +44,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(EstimationViewModel::class)
     abstract fun estimationViewModel(viewModel: EstimationViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProprieteViewModel::class)
+    abstract fun proprieteViewModel(viewModel: ProprieteViewModel): ViewModel
 }

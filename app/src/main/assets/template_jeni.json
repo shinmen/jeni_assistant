@@ -111,7 +111,7 @@
         "Non"
       ],
       "validation": [
-
+          "boolean"
       ]
     },
     {
@@ -211,7 +211,6 @@
         "Fibre",
         "Interphone",
         "Visiophone"
-        
       ],
       "validation": [
         

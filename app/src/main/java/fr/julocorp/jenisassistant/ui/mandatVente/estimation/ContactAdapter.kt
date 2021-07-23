@@ -13,11 +13,14 @@ import fr.julocorp.jenisassistant.infrastructure.inflate
 class ContactAdapter(private val contacts: MutableList<Contact>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun addContact(contact: Contact) {
-        contacts.add(contact)
-        notifyItemInserted(contacts.size)
+        if (!contacts.contains(contact)) {
+            contacts.add(contact)
+            notifyItemInserted(contacts.size)
+        }
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = ContactViewHolder(parent.inflate(
-        R.layout.viewholder_estimation_contact_list))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = ContactViewHolder(
+        parent.inflate(R.layout.viewholder_estimation_contact_list)
+    )
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) = with(holder as ContactViewHolder) {
         textEstimationFullname.text = contacts[position].fullname

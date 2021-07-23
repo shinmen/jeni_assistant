@@ -5,15 +5,20 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import fr.julocorp.jenisassistant.infrastructure.ViewType
 import fr.julocorp.jenisassistant.ui.calendar.list.CalendarRow
+import kotlinx.coroutines.withContext
+import kotlin.coroutines.CoroutineContext
 
 class RendezVousListAdapter(
     private val adapters: Map<ViewType, RendezVousAdapter>,
     private var calendarRows: List<CalendarRow> = listOf()
     ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    fun updateRows(rows: List<CalendarRow>) {
-        val diffCallback = CalendarRowDiffCallback(calendarRows, rows)
-        val diffResult = DiffUtil.calculateDiff(diffCallback)
+    suspend fun updateRows(rows: List<CalendarRow>, coroutineContext: CoroutineContext) {
+        val diffResult = withContext(coroutineContext) {
+            val diffCallback = CalendarRowDiffCallback(calendarRows, rows)
+            DiffUtil.calculateDiff(diffCallback)
+        }
+
         calendarRows = rows
         diffResult.dispatchUpdatesTo(this)
     }

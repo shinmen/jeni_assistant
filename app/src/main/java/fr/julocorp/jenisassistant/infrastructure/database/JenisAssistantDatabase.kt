@@ -4,6 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import fr.julocorp.jenisassistant.infrastructure.calendar.database.*
+import fr.julocorp.jenisassistant.infrastructure.mandatVente.database.CaracteristiqueDefinitionEntity
 import fr.julocorp.jenisassistant.infrastructure.mandatVente.database.*
 
 @Database(
@@ -14,10 +15,11 @@ import fr.julocorp.jenisassistant.infrastructure.mandatVente.database.*
         ProprieteEntity::class,
         CaracteristiqueEntity::class,
         ProprieteProprietaireCrossRef::class,
+        CaracteristiqueDefinitionEntity::class,
     ],
     version = JenisAssistantDatabase.DATABASE_VERSION
 )
-@TypeConverters(UuidConverter::class)
+@TypeConverters(UuidConverter::class, ListStringConverter::class)
 abstract class JenisAssistantDatabase : RoomDatabase() {
     abstract fun rappelDao(): RappelDao
 
