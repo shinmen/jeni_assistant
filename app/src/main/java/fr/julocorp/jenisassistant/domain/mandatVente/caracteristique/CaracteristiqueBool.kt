@@ -7,6 +7,7 @@ data class CaracteristiqueBool(
     override val id: UUID,
     override val label: String,
     override val valeur: Boolean,
+    override val definition: Definition
 ) : Caracteristique<Boolean> {
     override fun <U> valeurIn(listToSearchIn: List<U>): Boolean =
         castGeneric<List<Boolean>>(listToSearchIn).contains(valeur)

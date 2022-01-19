@@ -30,6 +30,6 @@
     <string name="email">Email</string>
     <string name="commentaire_a_ajouter">Info à rajouter</string>
 
-    <string name="value_m2">%1$sm²</string>
-
+    <string name="value_with_suffix">%1$s %2$s</string>
+    <string name="label_with">%1$s: </string>
 </resources>

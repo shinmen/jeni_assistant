@@ -37,4 +37,9 @@ open class LocalDbModule {
     @Provides
     open fun providesProprieteDao(database: JenisAssistantDatabase) =
         database.proprieteDao()
+
+    @Singleton
+    @Provides
+    open fun providesCaracteristiqueDao(database: JenisAssistantDatabase) =
+        database.caracteristiqueDao()
 }

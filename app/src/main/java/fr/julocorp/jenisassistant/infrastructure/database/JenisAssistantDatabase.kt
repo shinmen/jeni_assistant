@@ -29,6 +29,8 @@ abstract class JenisAssistantDatabase : RoomDatabase() {
 
     abstract fun proprieteDao(): ProprieteDao
 
+    abstract fun caracteristiqueDao(): CaracteristiqueDao
+
     companion object {
         const val DATABASE_VERSION = 1
         const val DATABASE_NAME = "jeni_assistant_database.db"

@@ -6,6 +6,7 @@ interface Caracteristique<T> {
     val valeur: T
     val label: String
     val id: UUID
+    val definition: Definition
 
     fun <T>valeurIn(listToSearchIn: List<T>): Boolean
 

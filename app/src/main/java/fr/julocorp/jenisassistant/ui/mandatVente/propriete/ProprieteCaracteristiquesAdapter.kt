@@ -1,6 +1,5 @@
 package fr.julocorp.jenisassistant.ui.mandatVente.propriete
 
-import android.annotation.SuppressLint
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -15,11 +14,23 @@ class ProprieteCaracteristiquesAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         CaracteristiqueViewHolder(parent.inflate(R.layout.viewholder_propriete_caracteristique_list))
 
-    @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) = with(holder as CaracteristiqueViewHolder) {
-        textLabelCaracteristique.text = "${caracteristiques[position].label.replaceFirstChar(Char::uppercase)}:"
-        textValueCaracteristique.text = caracteristiques[position].valeur.toString()
-    }
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
+        with(holder as CaracteristiqueViewHolder) {
+            val caracteristique = caracteristiques[position]
+            textLabelCaracteristique.text = itemView.resources.getString(
+                R.string.label_with,
+                caracteristique.label.replaceFirstChar(Char::uppercase)
+            )
+            textValueCaracteristique.text = if (caracteristique.definition.suffix !== null) {
+                itemView.resources.getString(
+                    R.string.value_with_suffix,
+                    caracteristique.valeur.toString(),
+                    caracteristique.definition.suffix
+                )
+            } else {
+                caracteristique.valeur.toString()
+            }
+        }
 
     override fun getItemCount(): Int = caracteristiques.size
 

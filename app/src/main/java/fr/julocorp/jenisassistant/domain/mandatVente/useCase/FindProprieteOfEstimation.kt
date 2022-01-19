@@ -2,7 +2,6 @@ package fr.julocorp.jenisassistant.domain.mandatVente.useCase
 
 import fr.julocorp.jenisassistant.domain.common.ActionState
 import fr.julocorp.jenisassistant.domain.common.Failure
-import fr.julocorp.jenisassistant.domain.common.Loading
 import fr.julocorp.jenisassistant.domain.common.Success
 import fr.julocorp.jenisassistant.domain.mandatVente.Propriete
 import fr.julocorp.jenisassistant.domain.mandatVente.exception.ProprieteNotFound

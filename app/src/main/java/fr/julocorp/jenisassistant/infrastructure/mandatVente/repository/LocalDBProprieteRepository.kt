@@ -1,6 +1,8 @@
 package fr.julocorp.jenisassistant.infrastructure.mandatVente.repository
 
+import fr.julocorp.jenisassistant.domain.mandatVente.Amenagement
 import fr.julocorp.jenisassistant.domain.mandatVente.Propriete
+import fr.julocorp.jenisassistant.domain.mandatVente.caracteristique.Caracteristique
 import fr.julocorp.jenisassistant.domain.mandatVente.repository.ProprieteRepository
 import fr.julocorp.jenisassistant.infrastructure.CoroutineContextProvider
 import fr.julocorp.jenisassistant.infrastructure.mandatVente.database.ProprieteDao

@@ -48,14 +48,24 @@ class ProprieteAdapter(
 
                 caracteristiques.findByLabel(Propriete.CARACTERISTIQUE_PROPRIETE_SURFACE_INTERIEURE_LABEL)
                     ?.let {
-                        textProprieteSurfaceInterieur.text =
-                            context.resources.getString(R.string.value_m2, it.valeur.toString())
+                        textProprieteSurfaceInterieur.text = if (it.definition.suffix !== null) {
+                            context.resources.getString(R.string.value_with_suffix, it.valeur.toString(), it.definition.suffix)
+                        } else {
+                            it.valeur.toString()
+                        }
                         groupSurfaceInterieure.visibility = VISIBLE
                     }
                 caracteristiques.findByLabel(Propriete.CARACTERISTIQUE_PROPRIETE_SURFACE_EXTERIEURE_LABEL)
                     ?.let {
-                        textProprieteSurfaceExterieure.text =
-                            context.resources.getString(R.string.value_m2, it.valeur.toString())
+                        textProprieteSurfaceExterieure.text = if (it.definition.suffix !== null) {
+                            context.resources.getString(
+                                R.string.value_with_suffix,
+                                it.valeur.toString(),
+                                it.definition.suffix
+                            )
+                        } else {
+                            it.valeur.toString()
+                        }
                         groupSurfaceExterieure.visibility = VISIBLE
                     }
 
@@ -76,7 +86,13 @@ class ProprieteAdapter(
                                     R.drawable.ic_buildings,
                                 )
                             }
-                            else -> { }
+                            caracteristique.valeurEquals("Terrain") -> {
+                                setIconProprieteNature(
+                                    imageProprieteNature,
+                                    context,
+                                    R.drawable.ic_garden,
+                                )
+                            }
                         }
                         textProprieteNature.text = caracteristique.valeur.toString()
                         groupNature.visibility = VISIBLE

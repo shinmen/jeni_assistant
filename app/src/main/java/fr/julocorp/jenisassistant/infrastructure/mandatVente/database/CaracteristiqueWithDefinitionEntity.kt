@@ -7,8 +7,8 @@ data class CaracteristiqueWithDefinitionEntity(
     @Embedded val caracteristique: CaracteristiqueEntity,
     @Relation(
         entity = CaracteristiqueDefinitionEntity::class,
-        parentColumn = "id",
-        entityColumn = "definition_id"
+        parentColumn = "definition_id",
+        entityColumn = "id"
     )
     val definition: CaracteristiqueDefinitionEntity,
 )

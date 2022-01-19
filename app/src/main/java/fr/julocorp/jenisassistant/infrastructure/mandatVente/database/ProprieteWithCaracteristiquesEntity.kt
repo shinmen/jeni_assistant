@@ -10,5 +10,5 @@ data class ProprieteWithCaracteristiquesEntity(
         parentColumn = "id",
         entityColumn = "propriete_id"
     )
-    val caracteristiques: List<CaracteristiqueEntity>,
+    val caracteristiques: List<CaracteristiqueWithDefinitionEntity>,
 )

@@ -5,10 +5,12 @@ import dagger.Module
 import fr.julocorp.jenisassistant.domain.calendar.repository.RappelRepository
 import fr.julocorp.jenisassistant.domain.calendar.repository.RendezVousEstimationRepository
 import fr.julocorp.jenisassistant.domain.common.repository.AdresseSearcher
+import fr.julocorp.jenisassistant.domain.mandatVente.repository.CaracteristiqueRepository
 import fr.julocorp.jenisassistant.domain.mandatVente.repository.ProprieteRepository
 import fr.julocorp.jenisassistant.infrastructure.calendar.repository.LocalDBRappelRepository
 import fr.julocorp.jenisassistant.infrastructure.calendar.repository.LocalDBRendezVousEstimationRepository
 import fr.julocorp.jenisassistant.infrastructure.common.repository.apiGeoGouv.ApiGeoGouvAdresseSearcher
+import fr.julocorp.jenisassistant.infrastructure.mandatVente.repository.LocalDBCaracteristiqueRepository
 import fr.julocorp.jenisassistant.infrastructure.mandatVente.repository.LocalDBProprieteRepository
 
 @Module
@@ -24,4 +26,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindProprieteRepository(proprieteRepository: LocalDBProprieteRepository): ProprieteRepository
+
+    @Binds
+    abstract fun bindCaracteristiqueRepository(caracteristiqueRepository: LocalDBCaracteristiqueRepository): CaracteristiqueRepository
 }

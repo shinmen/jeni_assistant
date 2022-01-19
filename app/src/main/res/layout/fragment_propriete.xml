@@ -1,19 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.mandatVente.propriete.ProprieteFragment">
-    <include layout="@layout/loader"/>
+
+    <include layout="@layout/loader" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/propriete_nature_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="label_propriete_nature,propriete_nature"/>
+
+    <TextView
+        android:id="@+id/label_propriete_nature"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@+id/propriete_nature"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/separator"
+        tools:text="Nature de la propriété"
+        />
+
+    <Spinner
+        android:id="@+id/propriete_nature"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/label_surface_habitable"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toEndOf="@+id/label_propriete_nature"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/separator"
+        />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/propriete_surface_habitable_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="label_surface_habitable,propriete_surface_habitable"/>
+    <TextView
+        android:id="@+id/label_surface_habitable"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@+id/propriete_surface_habitable"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toEndOf="@+id/propriete_nature"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/separator"
+        tools:text="surface"
+        />
+
+    <EditText
+        android:id="@+id/propriete_surface_habitable"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autofillHints=".AUTOFILL_TYPE_NONE"
+        android:inputType="numberSigned"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toEndOf="@+id/label_surface_habitable"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/separator"
+        />
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_marginVertical="@dimen/activity_vertical_margin"
+        android:layout_height="@dimen/separator_line_height"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/propriete_nature"
+        android:background="@android:color/black" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/propriete_caracteristique_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginVertical="@dimen/activity_vertical_margin"
+        android:foregroundGravity="clip_vertical"
         app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/viewholder_propriete_caracteristique_list"
-        />
+        app:layout_constraintTop_toBottomOf="@id/separator"
+        tools:listitem="@layout/viewholder_propriete_caracteristique_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
